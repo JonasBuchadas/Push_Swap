@@ -6,23 +6,17 @@
 # include <stdbool.h>
 # include "libft.h"
 # include <stdio.h>
-/*
-typedef struct lst_info
+
+typedef struct stack_info
 {
-	size_t	size;
-	int		min;
-	int 	max;
-	int 	median;
-	int		size_a
-	int		size_b
-	int		rot_a
-	int		nrot_a;
-	int		rot_b
-	int		nrot_b;
-	int		rot_ab
-	int		nrot_ab;
-}			info;
-*/
+	int	size;
+	int	min;
+	int	max;
+	int	median;
+	int	rot;
+	int	rrot;
+}			t_i;
+
 void	del(void *num);
 void	print(void *num);
 void	error(void);
@@ -41,11 +35,12 @@ dt_list	*pb(dt_list **a, dt_list **b);
 void	sort_size3(dt_list **stack);
 void	sort_size4(dt_list **stack);
 void	sort_size5(dt_list **stack);
-void	sort_medium_size(dt_list **stack);
+void	sort_medium_size(dt_list **a);
 void	smart_rotate(dt_list **stack, int n);
 bool	is_sorted(dt_list *stack);
 int		min_stack(dt_list *stack);
 char	**parser(int size, char **strlist);
 int		size_strlist(char **strlist);
-//void	smart_2stack_rotate(dt_list **a, dt_list **b, int* sorted, info *inf);
+void	stack_info(dt_list *stack, t_i *inf);
+void	smart_2stack_rotate(dt_list **a, dt_list **b, t_i *inf_a, t_i *inf_b);
 #endif

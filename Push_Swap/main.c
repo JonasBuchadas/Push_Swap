@@ -76,6 +76,6 @@ static void	sort_stack(dt_list **stack, int size)
 		sort_size4(stack);
 	else if (size == 5)
 		sort_size5(stack);
-//	else if (size <= 100)
-//		sort_medium_size(stack);
+	else if (size <= 100)
+		sort_medium_size(stack);
 }

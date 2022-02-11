@@ -39,6 +39,7 @@ static void	swap_largelst(dt_list **stack)
 	next->prev = swap1;
 	*stack = swap2;
 }
+
 void	sa(dt_list **stack)
 {
 	if (swap(stack))
