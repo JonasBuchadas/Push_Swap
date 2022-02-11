@@ -17,9 +17,9 @@ Adds the element ’new’ at the end of the list.
 
 #include "libft.h"
 
-void	ft_cdlstadd_back(dt_list **lst, dt_list *new)
+void	ft_cdlstadd_back(t_dlist **lst, t_dlist *new)
 {	
-	dt_list	*temp;
+	t_dlist	*temp;
 
 	if (!new)
 		return ;

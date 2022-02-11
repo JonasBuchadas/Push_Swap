@@ -17,9 +17,9 @@ Returns the last element of the list.
 
 #include "libft.h"
 
-dt_list	*ft_cdlstlast(dt_list *lst)
+t_dlist	*ft_cdlstlast(t_dlist *lst)
 {
-	dt_list	*temp;
+	t_dlist	*temp;
 
 	if (!lst)
 		return (NULL);

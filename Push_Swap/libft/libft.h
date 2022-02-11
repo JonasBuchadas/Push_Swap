@@ -27,7 +27,7 @@ typedef struct d_list
 	void			*content;
 	struct d_list	*next;
 	struct d_list	*prev;
-}					dt_list;
+}					t_dlist;
 
 // MANDATORY PROTOTYPES
 int		ft_atoi(const char *str);
@@ -75,13 +75,13 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 // CIRCULAR DOUBLE LINKED LISTS PROTOTYPES
-dt_list	*ft_cdlstnew(void *content);
-void	ft_cdlstadd_back(dt_list **lst, dt_list *new);
-void	ft_cdlstadd_front(dt_list **lst, dt_list *new);
-int		ft_cdlstsize(dt_list *lst);
-dt_list	*ft_cdlstlast(dt_list *lst);
-void	ft_cdlstdelone(dt_list *lst, void (*del)(void *));
-void	ft_cdlstclear(dt_list **lst, void (*del)(void *));
+t_dlist	*ft_cdlstnew(void *content);
+void	ft_cdlstadd_back(t_dlist **lst, t_dlist *new);
+void	ft_cdlstadd_front(t_dlist **lst, t_dlist *new);
+int		ft_cdlstsize(t_dlist *lst);
+t_dlist	*ft_cdlstlast(t_dlist *lst);
+void	ft_cdlstdelone(t_dlist *lst, void (*del)(void *));
+void	ft_cdlstclear(t_dlist **lst, void (*del)(void *));
 // ADDITIONAL PROTOTYPES
 void	ft_sort_int_tab(int *tab, int size);
 #endif

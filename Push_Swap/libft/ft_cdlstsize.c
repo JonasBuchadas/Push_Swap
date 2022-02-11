@@ -17,10 +17,10 @@ Counts the number of elements in a list.
 
 #include "libft.h"
 
-int	ft_cdlstsize(dt_list *lst)
+int	ft_cdlstsize(t_dlist *lst)
 {
 	int		size;
-	dt_list	*temp;
+	t_dlist	*temp;
 
 	if (!lst)
 		return (0);

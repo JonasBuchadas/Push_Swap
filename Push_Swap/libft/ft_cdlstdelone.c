@@ -20,7 +20,7 @@ The memory of ’next’ must not be freed.
 #include "libft.h"
 #include <stdlib.h>
 
-void	ft_cdlstdelone(dt_list *lst, void (*del)(void *))
+void	ft_cdlstdelone(t_dlist *lst, void (*del)(void *))
 {
 	if (!lst || !del)
 		return ;

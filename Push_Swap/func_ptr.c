@@ -16,7 +16,7 @@ void	print(void *num)
 	printf("%i\n", *((int *)num));
 }
 
-void	mem_clear(char **strlist, dt_list **stack, int *input)
+void	mem_clear(char **strlist, t_dlist **stack, int *input)
 {
 	int	i;
 

@@ -1,10 +1,10 @@
 #include "push_swap.h"
 
-static void	swap_largelst(dt_list **stack);
+static void	swap_largelst(t_dlist **stack);
 
-static bool	swap(dt_list **stack)
+static bool	swap(t_dlist **stack)
 {
-	dt_list	*temp;
+	t_dlist	*temp;
 
 	temp = *stack;
 	if (ft_cdlstsize(temp) == 2)
@@ -20,12 +20,12 @@ static bool	swap(dt_list **stack)
 	return (false);
 }
 
-static void	swap_largelst(dt_list **stack)
+static void	swap_largelst(t_dlist **stack)
 {
-	dt_list	*swap1;
-	dt_list	*swap2;
-	dt_list	*next;
-	dt_list	*prev;
+	t_dlist	*swap1;
+	t_dlist	*swap2;
+	t_dlist	*next;
+	t_dlist	*prev;
 
 	swap1 = *stack;
 	swap2 = swap1->next;
@@ -40,19 +40,19 @@ static void	swap_largelst(dt_list **stack)
 	*stack = swap2;
 }
 
-void	sa(dt_list **stack)
+void	sa(t_dlist **stack)
 {
 	if (swap(stack))
 		write(1, &"sa\n", 3);
 }
 
-void	sb(dt_list **stack)
+void	sb(t_dlist **stack)
 {
 	if (swap(stack))
 		write(1, &"sb\n", 3);
 }
 
-void	ss(dt_list **stack_a, dt_list **stack_b)
+void	ss(t_dlist **stack_a, t_dlist **stack_b)
 {
 	if (swap(stack_a) || swap(stack_b))
 		write(1, &"ss\n", 3);

@@ -1,9 +1,9 @@
 #include "push_swap.h"
 
-static void	push(dt_list **a, dt_list **b)
+static void	push(t_dlist **a, t_dlist **b)
 {
-	dt_list	*first;
-	dt_list	*temp;
+	t_dlist	*first;
+	t_dlist	*temp;
 
 	first = *a;
 	temp = first->prev;
@@ -16,14 +16,14 @@ static void	push(dt_list **a, dt_list **b)
 	ft_cdlstadd_front(b, first);
 }
 
-dt_list	*pa(dt_list **a, dt_list **b)
+t_dlist	*pa(t_dlist **a, t_dlist **b)
 {
 	push(b, a);
 	write(1, "pa\n", 3);
 	return (*a);
 }
 
-dt_list	*pb(dt_list **a, dt_list **b)
+t_dlist	*pb(t_dlist **a, t_dlist **b)
 {
 	push(a, b);
 	write(1, "pb\n", 3);

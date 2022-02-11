@@ -1,15 +1,15 @@
 #include "push_swap.h"
 
 static void		check_int(char *s, int *arr, int size);
-static dt_list	*create_stack(int *input, int size);
-static void		sort_stack(dt_list **stack, int size);
+static t_dlist	*create_stack(int *input, int size);
+static void		sort_stack(t_dlist **stack, int size);
 
 int	main(int argc, char **argv)
 {
 	char	**strlist;
 	int		size;
 	int		*input;
-	dt_list	*stack;
+	t_dlist	*stack;
 	int		i;
 
 	if (argc == 1)
@@ -47,11 +47,11 @@ static void	check_int(char *s, int *arr, int size)
 	}
 }
 
-static dt_list	*create_stack(int *input, int size)
+static t_dlist	*create_stack(int *input, int size)
 {
 	int		i;
-	dt_list	*stack;
-	dt_list	*temp;
+	t_dlist	*stack;
+	t_dlist	*temp;
 
 	i = 0;
 	stack = ft_cdlstnew(&input[i]);
@@ -63,7 +63,7 @@ static dt_list	*create_stack(int *input, int size)
 	return (stack);
 }
 
-static void	sort_stack(dt_list **stack, int size)
+static void	sort_stack(t_dlist **stack, int size)
 {
 	if (size == 2)
 	{

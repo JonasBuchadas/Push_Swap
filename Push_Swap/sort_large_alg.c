@@ -1,10 +1,10 @@
 #include "push_swap.h"
 
-void	sort_medium_size(dt_list **a)
+void	sort_medium_size(t_dlist **a)
 {
 	t_i	inf_a;
 	t_i	inf_b;
-	dt_list	*b;
+	t_dlist	*b;
 	
 	stack_info(*a, &inf_a);
 	smart_2stack_rotate(a, &b, &inf_a, &inf_b);
@@ -12,10 +12,10 @@ void	sort_medium_size(dt_list **a)
 	return ;
 }
 
-void	stack_info(dt_list *stack, t_i *inf)
+void	stack_info(t_dlist *stack, t_i *inf)
 {
 	int		*sorted;
-	dt_list	*temp;
+	t_dlist	*temp;
 	int		i;
 	int		size;
 

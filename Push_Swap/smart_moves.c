@@ -1,10 +1,10 @@
 #include "push_swap.h"
 
-void	smart_rotate(dt_list **stack, int n)
+void	smart_rotate(t_dlist **stack, int n)
 {
 	int		size;
 	int		steps;
-	dt_list	*temp;
+	t_dlist	*temp;
 
 	size = ft_cdlstsize(*stack);
 	temp = *stack;
@@ -26,9 +26,9 @@ void	smart_rotate(dt_list **stack, int n)
 	}
 }
 
-bool	is_sorted(dt_list *stack)
+bool	is_sorted(t_dlist *stack)
 {
-	dt_list	*temp;
+	t_dlist	*temp;
 	int		n;
 	int		n_next;
 
@@ -48,9 +48,9 @@ bool	is_sorted(dt_list *stack)
 	return (true);
 }
 
-int	min_stack(dt_list *stack)
+int	min_stack(t_dlist *stack)
 {
-	dt_list	*temp;
+	t_dlist	*temp;
 	int		n;
 
 	temp = stack;

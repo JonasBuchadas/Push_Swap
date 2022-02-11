@@ -20,11 +20,11 @@ The variables ’next’ and ’prev’ are initialized to itself.
 #include "libft.h"
 #include <stdlib.h>
 
-dt_list	*ft_cdlstnew(void *content)
+t_dlist	*ft_cdlstnew(void *content)
 {
-	dt_list	*new;
+	t_dlist	*new;
 
-	new = (dt_list *)malloc(sizeof(dt_list));
+	new = (t_dlist *)malloc(sizeof(t_dlist));
 	if (!new)
 		return (NULL);
 	new->content = content;

@@ -20,10 +20,10 @@ Finally, the pointer to the list must be set to NULL.
 #include "libft.h"
 #include <stdlib.h>
 
-void	ft_cdlstclear(dt_list **lst, void (*del)(void *))
+void	ft_cdlstclear(t_dlist **lst, void (*del)(void *))
 {	
-	dt_list	*temp;
-	dt_list	*temp_free;
+	t_dlist	*temp;
+	t_dlist	*temp_free;
 
 	if (!(*lst) || !del)
 		return ;

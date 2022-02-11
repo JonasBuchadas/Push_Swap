@@ -1,10 +1,10 @@
 #include "push_swap.h"
 
-static int	check_order(dt_list *stack);
+static int	check_order(t_dlist *stack);
 
-void	sort_size5(dt_list **a)
+void	sort_size5(t_dlist **a)
 {
-	dt_list	*b;
+	t_dlist	*b;
 	int		min;
 
 	min = min_stack(*a);
@@ -26,9 +26,9 @@ void	sort_size5(dt_list **a)
 	(*a) = pa(a, &b);
 }
 
-void	sort_size4(dt_list **a)
+void	sort_size4(t_dlist **a)
 {
-	dt_list	*b;
+	t_dlist	*b;
 	int		min;
 
 	min = min_stack(*a);
@@ -41,7 +41,7 @@ void	sort_size4(dt_list **a)
 	(*a) = pa(a, &b);
 }
 
-void	sort_size3(dt_list **stack)
+void	sort_size3(t_dlist **stack)
 {
 	int	condition;
 
@@ -64,12 +64,12 @@ void	sort_size3(dt_list **stack)
 	}
 }
 
-static int	check_order(dt_list *stack)
+static int	check_order(t_dlist *stack)
 {
 	int		result;
-	dt_list	*first;
-	dt_list	*second;
-	dt_list	*third;
+	t_dlist	*first;
+	t_dlist	*second;
+	t_dlist	*third;
 
 	first = stack;
 	second = first->next;
