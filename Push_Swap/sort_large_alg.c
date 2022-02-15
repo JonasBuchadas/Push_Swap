@@ -5,10 +5,10 @@ void	sort_medium_size(t_dlist **a)
 	t_i	inf_a;
 	t_i	inf_b;
 	t_dlist	*b;
-	
+
+	b = NULL;	
 	stack_info(*a, &inf_a);
 	smart_2stack_rotate(a, &b, &inf_a, &inf_b);
-//	ft_lstiter(b, print);
 	return ;
 }
 

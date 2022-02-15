@@ -14,7 +14,9 @@ typedef struct stack_info
 	int	max;
 	int	median;
 	int	rot;
+	int r_num;
 	int	rrot;
+	int rr_num;
 }			t_i;
 
 void	del(void *num);
