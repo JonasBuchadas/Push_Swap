@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cdlstadd_front.c                                :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaetan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 12:42:34 by jocaetan          #+#    #+#             */
-/*   Updated: 2021/10/22 14:32:02 by jocaetan         ###   ########.fr       */
+/*   Created: 2021/10/18 13:30:55 by jocaetan          #+#    #+#             */
+/*   Updated: 2021/10/22 14:38:50 by jocaetan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 DESCRIPTION
-Adds the element ’new’ at the beggining of the list.
+Iterates the list ’lst’ and applies the function ’f’ to the content of each 
+element.
 */
 
 #include "libft.h"
 
-void	ft_cdlstadd_front(t_dlist **lst, t_dlist *new)
+void	ft_cdlstiter(t_dlist *lst, void (*f)(void *))
 {	
 	t_dlist	*temp;
 
-	if (!new)
+	if (!lst || !f)
 		return ;
-	if (!(*lst))
+	temp = lst;
+	while (temp->next != lst)
 	{
-		*lst = new;
-		new->next = new;
-		new->prev = new;
-		return ;
+		f(temp->content);
+		temp = temp->next;
 	}
-	temp = *lst;
-	new->next = temp;
-	new->prev = temp->prev;
-	temp->prev = new;
-	temp = new->prev;
-	temp->next = new;
-	*lst = new;
+	f(temp->content);
 }

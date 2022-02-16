@@ -32,6 +32,8 @@ bool	is_sorted(t_dlist *stack)
 	int		n;
 	int		n_next;
 
+	if (!stack)
+		return (false);
 	temp = stack;
 	n = *(int *)temp->content;
 	while (temp->next != stack)
@@ -44,6 +46,30 @@ bool	is_sorted(t_dlist *stack)
 	}
 	n_next = *(int *)temp->content;
 	if (n > n_next)
+		return (false);
+	return (true);
+}
+
+bool	is_sorted_rev(t_dlist *stack)
+{
+	t_dlist	*temp;
+	int		n;
+	int		n_next;
+
+	if (!stack)
+		return (false);
+	temp = stack;
+	n = *(int *)temp->content;
+	while (temp->next != stack)
+	{
+		n_next = *(int *)temp->content;
+		if (n < n_next)
+			return (false);
+		n = n_next;
+		temp = temp->next;
+	}
+	n_next = *(int *)temp->content;
+	if (n < n_next)
 		return (false);
 	return (true);
 }

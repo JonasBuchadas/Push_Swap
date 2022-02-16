@@ -64,6 +64,12 @@ void	sort_size3(t_dlist **stack)
 	}
 }
 
+void	sort_size2(t_dlist **stack)
+{
+	if (!(is_sorted(*stack)))
+		sa(stack);
+}
+
 static int	check_order(t_dlist *stack)
 {
 	int		result;

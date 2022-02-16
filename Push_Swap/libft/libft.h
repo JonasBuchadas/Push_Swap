@@ -82,6 +82,7 @@ int		ft_cdlstsize(t_dlist *lst);
 t_dlist	*ft_cdlstlast(t_dlist *lst);
 void	ft_cdlstdelone(t_dlist *lst, void (*del)(void *));
 void	ft_cdlstclear(t_dlist **lst, void (*del)(void *));
+void	ft_cdlstiter(t_dlist *lst, void (*f)(void *));
 // ADDITIONAL PROTOTYPES
 void	ft_sort_int_tab(int *tab, int size);
 #endif

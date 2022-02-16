@@ -24,7 +24,7 @@ OBJ_BONUS=$(BONUS:.c=.o)
 
 CLISTS=	ft_cdlstnew.c ft_cdlstsize.c ft_cdlstlast.c\
 		ft_cdlstadd_front.c ft_cdlstadd_back.c ft_cdlstdelone.c \
-		ft_cdlstclear.c
+		ft_cdlstclear.c ft_cdlstiter.c
 
 OBJ_CLISTS=$(CLISTS:.c=.o)
 
