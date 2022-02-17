@@ -26,6 +26,8 @@ int	main(int argc, char **argv)
 		input[i] = ft_atoi((const char *)strlist[i]);
 	}
 	stack = create_stack(input, size);
+	if (is_sorted(stack))
+		return (0);
 	sort_stack(&stack, size);
 	mem_clear(strlist, &stack, input);
 	return (0);
@@ -76,6 +78,6 @@ static void	sort_stack(t_dlist **stack, int size)
 		sort_size4(stack);
 	else if (size == 5)
 		sort_size5(stack);
-	else if (size <= 100)
+	else if (size > 5)
 		sort_medium_size(stack);
 }
