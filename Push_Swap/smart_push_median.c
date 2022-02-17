@@ -1,7 +1,7 @@
 #include "push_swap.h"
 
 static void	check_stack_a(t_dlist *a, int median, t_i *inf);
-static void	check_stack_b(t_dlist *b, t_i *inf_b);
+static void	check_stack_b(t_dlist *b, t_i *inf_a, t_i *inf_b);
 static void	execute_moves(t_dlist **a, t_dlist **b, t_i *inf_b, int m);
 
 void	smart_push_median(t_dlist **a, t_dlist **b, t_i *inf_a, t_i *inf_b)
@@ -13,7 +13,7 @@ void	smart_push_median(t_dlist **a, t_dlist **b, t_i *inf_a, t_i *inf_b)
 	while (inf_a->min < median)
 	{	
 		check_stack_a(*a, median, inf_a);
-		check_stack_b(*b, inf_b);
+		check_stack_b(*b, inf_a, inf_b);
 		if (inf_b->rot > inf_a->rot)
 			inf_b->rot = 0;
 		if (inf_b->rrot > inf_a->rrot)
@@ -56,7 +56,7 @@ static void	check_stack_a(t_dlist *a, int median, t_i *inf)
 	inf->rr_num = *(int *)temp->content;
 }
 
-static void	check_stack_b(t_dlist *b, t_i *inf_b)
+static void	check_stack_b(t_dlist *b, t_i *inf_a, t_i *inf_b)
 {
 	int		r;
 	t_dlist	*temp;
@@ -69,7 +69,7 @@ static void	check_stack_b(t_dlist *b, t_i *inf_b)
 	}
 	temp = b;
 	r = 0;
-	while (!is_sorted_rev(temp) && temp->next != b)
+	while (*(int *)temp->content > inf_a-> r_num && temp->next != b)
 	{
 		temp = temp->next;
 		r++;
@@ -77,7 +77,7 @@ static void	check_stack_b(t_dlist *b, t_i *inf_b)
 	inf_b->rot = r;
 	temp = b;
 	r = 0;
-	while (!is_sorted_rev(temp) && temp->prev != b)
+	while (*(int *)temp->content > inf_a-> rr_num && temp->prev != b)
 	{
 		temp = temp->prev;
 		r++;

@@ -11,7 +11,11 @@ typedef struct stack_info
 {
 	int	size;
 	int	min;
+	int	min_rot;
+	int	min_rrot;
 	int	max;
+	int	max_rot;
+	int	max_rrot;
 	int	median;
 	int	rot;
 	int	r_num;
@@ -43,8 +47,12 @@ void	smart_rotate(t_dlist **stack, int n);
 bool	is_sorted(t_dlist *stack);
 bool	is_sorted_rev(t_dlist *stack);
 int		min_stack(t_dlist *stack);
+int		max_value(int v1, int v2);
 char	**parser(int size, char **strlist);
 int		size_strlist(char **strlist);
 void	stack_info(t_dlist *stack, t_i *inf);
+void	check_a(t_dlist *a, t_i *inf_a);
+void	check_b(t_dlist *b, t_i *inf_b);
 void	smart_push_median(t_dlist **a, t_dlist **b, t_i *inf_a, t_i *inf_b);
+void	smart_push_a(t_dlist **a, t_dlist **b, t_i *inf_a, t_i *inf_b);
 #endif

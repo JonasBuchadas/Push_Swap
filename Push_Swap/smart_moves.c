@@ -91,3 +91,14 @@ int	min_stack(t_dlist *stack)
 		n = *(int *)temp->content;
 	return (n);
 }
+
+int	max_value(int v1, int v2)
+{
+	int	max_value;
+
+	if (v1 >= v2)
+		max_value = v1;
+	else
+		max_value = v2;
+	return (max_value);
+}
