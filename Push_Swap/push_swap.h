@@ -23,6 +23,16 @@ typedef struct stack_info
 	int	rr_num;
 }			t_i;
 
+typedef struct stack_b_info
+{
+	int	r_num;
+	int	r_rot;
+	int	r_rrot;
+	int	rr_num;
+	int	rr_rot;
+	int	rr_rrot;
+}			t_ib;
+
 void	del(void *num);
 void	print(void *num);
 void	error(void);
@@ -48,11 +58,13 @@ bool	is_sorted(t_dlist *stack);
 bool	is_sorted_rev(t_dlist *stack);
 int		min_stack(t_dlist *stack);
 int		max_value(int v1, int v2);
+int		min_value(int v1, int v2);
 char	**parser(int size, char **strlist);
 int		size_strlist(char **strlist);
 void	stack_info(t_dlist *stack, t_i *inf);
 void	check_a(t_dlist *a, t_i *inf_a);
 void	check_b(t_dlist *b, t_i *inf_b);
-void	smart_push_median(t_dlist **a, t_dlist **b, t_i *inf_a, t_i *inf_b);
+void	smart_push_median(t_dlist **a, t_dlist **b, t_i *inf_a, t_ib *inf_b);
+void	check_stack_b(t_dlist *b, t_i *inf_a, t_ib *inf_b);
 void	smart_push_a(t_dlist **a, t_dlist **b, t_i *inf_a, t_i *inf_b);
 #endif

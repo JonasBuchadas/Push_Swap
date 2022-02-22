@@ -102,3 +102,14 @@ int	max_value(int v1, int v2)
 		max_value = v2;
 	return (max_value);
 }
+
+int	min_value(int v1, int v2)
+{
+	int	min_value;
+
+	if (v1 <= v2)
+		min_value = v1;
+	else
+		min_value = v2;
+	return (min_value);
+}

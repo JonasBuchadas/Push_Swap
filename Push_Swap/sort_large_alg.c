@@ -3,7 +3,7 @@
 void	sort_medium_size(t_dlist **a)
 {
 	t_i		inf_a;
-	t_i		inf_b;
+	t_ib	inf_b;
 	t_dlist	*b;
 
 	b = NULL;
@@ -16,16 +16,18 @@ void	sort_medium_size(t_dlist **a)
 		sort_size3(a);
 	if (ft_cdlstsize(*a) == 2)
 		sort_size2(a);	
-//	ft_cdlstiter(*a, print);
-//	printf("STACK_A\n");
-//	ft_cdlstiter(b, print);
-//	printf("STACK_B\n");
+	ft_cdlstiter(*a, print);
+	printf("STACK_A\n");
+	ft_cdlstiter(b, print);
+	printf("STACK_B\n");
+	/*
 	while (ft_cdlstsize(b) > 0)
 	{	
 		stack_info(*a, &inf_a);
 		stack_info(b, &inf_b);
 		smart_push_a(a, &b, &inf_a, &inf_b);
 	}
+	*/
 //	ft_cdlstiter(*a, print);
 //	printf("STACK_A\n");
 }
