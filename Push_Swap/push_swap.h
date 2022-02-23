@@ -25,6 +25,7 @@ typedef struct stack_info
 
 typedef struct stack_b_info
 {
+	int max;
 	int	r_num;
 	int	r_rot;
 	int	r_rrot;

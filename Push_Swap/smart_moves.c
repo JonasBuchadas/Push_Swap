@@ -9,20 +9,20 @@ void	smart_rotate(t_dlist **stack, int n)
 	size = ft_cdlstsize(*stack);
 	temp = *stack;
 	steps = 0;
-	while (*(int *)(temp)->content > n)
+	while (*(int *)(temp)->content != n)
 	{
 		steps++;
 		temp = temp->next;
 	}
 	if (steps > (size / 2))
 	{
-		while (*(int *)(*stack)->content > n)
-			rra(stack);
+		if (*(int *)(*stack)->content != n)
+			rrb(stack);
 	}
 	else
 	{	
-		while (*(int *)(*stack)->content > n)
-			ra(stack);
+		if (*(int *)(*stack)->content != n)
+			rb(stack);
 	}
 }
 
