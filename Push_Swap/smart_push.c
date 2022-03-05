@@ -5,7 +5,7 @@ static int	choose_moves(t_s *i_s, t_r *i_r);
 static int	choose_moves_2(t_s *i_s, t_r *i_r);
 static void	execute_moves(t_dlist **s, t_dlist **r, int m);
 
-void	smart_push_median(t_dlist **s, t_dlist **r, t_s *inf_s, t_r *inf_r)
+void	smart_push(t_dlist **s, t_dlist **r, t_s *inf_s, t_r *inf_r)
 {	
 	int	median;
 	int	m;
@@ -96,17 +96,17 @@ static int	choose_moves_2(t_s *i_s, t_r *i_r)
 static void	execute_moves(t_dlist **s, t_dlist **r, int m)
 {
 	if (m == 0)
-		pb(s, r);
+		pa(s, r);
 	else if (m == 1)
-		ra(s);
+		rb(s);
 	else if (m == 2)
-		rra(s);
+		rrb(s);
 	else if (m == 3)
-		rb(r);
+		ra(r);
 	else if (m == 4)
-		rrb(r);
+		rra(r);
 	else if (m == 5)
-		rr(s, r);
+		rr(r, s);
 	else if (m == 6)
-		rrr(s, r);
+		rrr(r, s);
 }

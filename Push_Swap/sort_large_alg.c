@@ -2,40 +2,33 @@
 
 void	sort_medium_size(t_dlist **a)
 {
-	t_i		inf_a;
-	t_ib	inf_b;
+	t_s		inf_s;
+	t_r		inf_r;
 	t_dlist	*b;
 
 	b = NULL;
 	while (ft_cdlstsize(*a) > 3)
 	{
-		stack_info(*a, &inf_a);
-		smart_push_median(a, &b, &inf_a, &inf_b);
+		stack_info(*a, &inf_s);
+		push_median(a, &b, &inf_s);
 	}
-	stack_info(b, &inf_a);
-	while (*(int *)b->content != inf_a.max)
-		smart_rotate(&b, inf_a.max);
+	stack_info(b, &inf_s);
+	while (*(int *)b->content != inf_s.max)
+		smart_rotate(&b, inf_s.max);
 	if (ft_cdlstsize(*a) == 3)
 		sort_size3(a);
 	if (ft_cdlstsize(*a) == 2)
 		sort_size2(a);
+	ft_cdlstiter(b, print);
+	ft_cdlstiter(*a, print);
 	while (ft_cdlstsize(b) > 0)
-		pa(a, &b);
-//	ft_cdlstiter(*a, print);
-//	printf("STACK_A\n");
-	/*
-	while (ft_cdlstsize(b) > 0)
-	{	
-		stack_info(*a, &inf_a);
-		stack_info(b, &inf_b);
-		smart_push_a(a, &b, &inf_a, &inf_b);
+	{
+		stack_info(b, &inf_s);
+		smart_push(a, &b, &inf_s, &inf_r);
 	}
-	*/
-//	ft_cdlstiter(*a, print);
-//	printf("STACK_A\n");
 }
 
-void	stack_info(t_dlist *stack, t_i *inf)
+void	stack_info(t_dlist *stack, t_s *inf)
 {
 	int		*sorted;
 	t_dlist	*temp;

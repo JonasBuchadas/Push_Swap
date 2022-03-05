@@ -7,7 +7,7 @@
 # include "libft.h"
 # include <stdio.h>
 
-typedef struct stack_info
+typedef struct stack_send_info
 {
 	int	size;
 	int	min;
@@ -21,9 +21,9 @@ typedef struct stack_info
 	int	r_num;
 	int	rrot;
 	int	rr_num;
-}			t_i;
+}			t_s;
 
-typedef struct stack_b_info
+typedef struct stack_receiver_info
 {
 	int max;
 	int	r_num;
@@ -32,7 +32,7 @@ typedef struct stack_b_info
 	int	rr_num;
 	int	rr_rot;
 	int	rr_rrot;
-}			t_ib;
+}			t_r;
 
 void	del(void *num);
 void	print(void *num);
@@ -62,10 +62,12 @@ int		max_value(int v1, int v2);
 int		min_value(int v1, int v2);
 char	**parser(int size, char **strlist);
 int		size_strlist(char **strlist);
-void	stack_info(t_dlist *stack, t_i *inf);
-void	check_a(t_dlist *a, t_i *inf_a);
-void	check_b(t_dlist *b, t_i *inf_b);
-void	smart_push_median(t_dlist **a, t_dlist **b, t_i *inf_a, t_ib *inf_b);
-void	check_stack_b(t_dlist *b, t_i *inf_a, t_ib *inf_b);
-void	smart_push_a(t_dlist **a, t_dlist **b, t_i *inf_a, t_i *inf_b);
+void	stack_info(t_dlist *stack, t_s *inf);
+void	check_a(t_dlist *a, t_s *inf_s);
+void	check_b(t_dlist *b, t_s *inf_r);
+void	smart_push_median(t_dlist **a, t_dlist **b, t_s *inf_s, t_r *inf_r);
+void	push_median(t_dlist **a, t_dlist **b, t_s *inf_s);
+void	check_receiver_stack(t_dlist *r, t_s *inf_s, t_r *inf_r);
+void	smart_push_a(t_dlist **a, t_dlist **b, t_s *inf_s, t_r *inf_r);
+void	smart_push(t_dlist **s, t_dlist **r, t_s *inf_s, t_r *inf_r);
 #endif

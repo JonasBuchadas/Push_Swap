@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 	if (is_sorted(stack))
 		return (0);
 	sort_stack(&stack, size);
+	ft_cdlstiter(stack, print);
 	mem_clear(strlist, &stack, input);
 	return (0);
 }
