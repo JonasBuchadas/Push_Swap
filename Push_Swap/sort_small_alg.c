@@ -8,13 +8,13 @@ void	sort_size5(t_dlist **a)
 	int		min;
 
 	min = min_stack(*a);
-	smart_rotate(a, min);
+	smart_rotate_a(a, min);
 	if (is_sorted(*a))
 		return ;
 	b = NULL;
 	b = pb(a, &b);
 	min = min_stack(*a);
-	smart_rotate(a, min);
+	smart_rotate_a(a, min);
 	if (is_sorted(*a))
 	{
 		(*a) = pa(a, &b);
@@ -32,7 +32,7 @@ void	sort_size4(t_dlist **a)
 	int		min;
 
 	min = min_stack(*a);
-	smart_rotate(a, min);
+	smart_rotate_a(a, min);
 	if (is_sorted(*a))
 		return ;
 	b = NULL;

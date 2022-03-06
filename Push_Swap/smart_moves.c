@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	smart_rotate(t_dlist **stack, int n)
+void	smart_rotate_b(t_dlist **stack, int n)
 {
 	int		size;
 	int		steps;
@@ -23,6 +23,32 @@ void	smart_rotate(t_dlist **stack, int n)
 	{	
 		if (*(int *)(*stack)->content != n)
 			rb(stack);
+	}
+}
+
+void	smart_rotate_a(t_dlist **stack, int n)
+{
+	int		size;
+	int		steps;
+	t_dlist	*temp;
+
+	size = ft_cdlstsize(*stack);
+	temp = *stack;
+	steps = 0;
+	while (*(int *)(temp)->content != n)
+	{
+		steps++;
+		temp = temp->next;
+	}
+	if (steps > (size / 2))
+	{
+		if (*(int *)(*stack)->content != n)
+			rra(stack);
+	}
+	else
+	{	
+		if (*(int *)(*stack)->content != n)
+			ra(stack);
 	}
 }
 
@@ -90,26 +116,4 @@ int	min_stack(t_dlist *stack)
 	if (n > *(int *)temp->content)
 		n = *(int *)temp->content;
 	return (n);
-}
-
-int	max_value(int v1, int v2)
-{
-	int	max_value;
-
-	if (v1 >= v2)
-		max_value = v1;
-	else
-		max_value = v2;
-	return (max_value);
-}
-
-int	min_value(int v1, int v2)
-{
-	int	min_value;
-
-	if (v1 <= v2)
-		min_value = v1;
-	else
-		min_value = v2;
-	return (min_value);
 }

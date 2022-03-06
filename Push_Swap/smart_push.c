@@ -75,18 +75,18 @@ static int	choose_moves_2(t_s *i_s, t_r *i_r)
 	rrdiff = i_r->rr_rrot - i_s->rrot;
 	if (i_s->rot == 0 || i_s->rrot == 0)
 	{
-		if (i_r->r_rot < min_value(i_r->r_rrot, i_r->rr_rrot))
+		if (i_r->r_rot < ft_min_int(2, i_r->r_rrot, i_r->rr_rrot))
 			return (3);
 		else
 			return (4);
 	}
 	else
 	{
-		if (i_s->rot < i_s->rrot && rdiff < min_value(i_r->r_rrot, i_r->rr_rrot))
+		if (i_s->rot < i_s->rrot && rdiff < ft_min_int(2, i_r->r_rrot, i_r->rr_rrot))
 			return (5);
 		else
 			return (1);
-		if (i_s->rrot < i_s->rot && rrdiff < min_value(i_r->r_rot, i_r->rr_rot))
+		if (i_s->rrot < i_s->rot && rrdiff < ft_min_int(2, i_r->r_rot, i_r->rr_rot))
 			return (6);
 		else
 			return (2);	
