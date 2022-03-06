@@ -25,7 +25,7 @@ typedef struct stack_send_info
 
 typedef struct stack_receiver_info
 {
-	int max;
+	int	max;
 	int	r_num;
 	int	r_rot;
 	int	r_rrot;
@@ -40,9 +40,9 @@ typedef struct best_moves_calc
 	int		counter_r;
 	int		counter_rr;
 	int		size;
-	int 	mc1;
-	int 	mc2;
-	int 	mc3;
+	int		mc1;
+	int		mc2;
+	int		mc3;
 	int		mc4;
 	int		s_num;
 	int		s_move;

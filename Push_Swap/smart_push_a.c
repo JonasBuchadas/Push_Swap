@@ -15,17 +15,17 @@ void	smart_push_median(t_dlist **a, t_dlist **b, t_s *inf_s, t_r *inf_r)
 	while (ft_cdlstsize(*b) > 0)
 	{
 		while (ft_min_int(2, inf_s->rot, inf_s->rrot) < calc.totalmoves
-				|| calc.size > calc.counter_r + calc.counter_rr) // Calculate best move combination between Stack A and Stack B	
+			|| calc.size > calc.counter_r + calc.counter_rr)
 		{
 			check_sender_stack(*b, inf_s, &calc);
 			check_receiver_stack(*a, inf_s, inf_r);
 			choose_moves(inf_s, inf_r, &calc);
 			if (calc.size < calc.counter_r + calc.counter_rr)
-				break;
+				break ;
 		}
 		execute_moves(a, b, &calc);
-		pa(a, b); // Finally push element to stack A
-		stack_info(*b, inf_s); // Update Stack B Info
+		pa(a, b);
+		stack_info(*b, inf_s);
 		restart_calc(&calc, inf_s);
 	}
 }
@@ -80,9 +80,9 @@ static void	check_sender_stack(t_dlist *s, t_s *inf, t_calc *calc)
 	calc->counter_rr++;
 }
 
-static void choose_moves(t_s *i_s, t_r *i_r, t_calc *c)
+static void	choose_moves(t_s *i_s, t_r *i_r, t_calc *c)
 {
-	int min_moves;
+	int	min_moves;
 
 	c->mc1 = ft_max_int(2, i_s->rot, i_r->r_rot);
 	c->mc2 = i_s->rot + i_r->r_rrot;
@@ -108,7 +108,7 @@ static void choose_moves(t_s *i_s, t_r *i_r, t_calc *c)
 	choose_moves_2(i_s, i_r, c, min_moves);
 }
 
-static void choose_moves_2(t_s *i_s, t_r *i_r, t_calc *c, int min_moves)
+static void	choose_moves_2(t_s *i_s, t_r *i_r, t_calc *c, int min_moves)
 {
 	if (min_moves == c->mc3 && min_moves < c->totalmoves)
 	{
@@ -128,7 +128,7 @@ static void choose_moves_2(t_s *i_s, t_r *i_r, t_calc *c, int min_moves)
 	}
 }
 
-static void execute_moves(t_dlist **a, t_dlist **b, t_calc *c)
+static void	execute_moves(t_dlist **a, t_dlist **b, t_calc *c)
 {
 	while (c->s_ops > 0 || c->r_ops > 0)
 	{
