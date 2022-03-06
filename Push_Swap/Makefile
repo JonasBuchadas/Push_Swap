@@ -4,7 +4,7 @@ CFLAGS=		-Wall -Werror -Wextra -g
 
 NAME=		push_swap
 
-SRCS=		main.c func_ptr.c swap.c rotate.c reverse_rotate.c push.c sort_small_alg.c smart_moves.c parser.c sort_large_alg.c push_median.c smart_push_median.c smart_push.c check_receiver_stack.c
+SRCS=		main.c func_ptr.c swap.c rotate.c reverse_rotate.c push.c sort_small_alg.c smart_moves.c parser.c sort_large_alg.c push_median.c smart_push_a.c smart_push.c check_receiver_stack.c
 
 OBJS=		$(SRCS:.c=.o)
 

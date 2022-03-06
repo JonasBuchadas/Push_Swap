@@ -34,6 +34,25 @@ typedef struct stack_receiver_info
 	int	rr_rrot;
 }			t_r;
 
+typedef struct best_moves_calc
+{
+	int		init_size;
+	int		counter_r;
+	int		counter_rr;
+	int		size;
+	int 	mc1;
+	int 	mc2;
+	int 	mc3;
+	int		mc4;
+	int		s_num;
+	int		s_move;
+	int		s_ops;
+	int		r_num;
+	int		r_move;
+	int		r_ops;
+	int		totalmoves;
+}			t_calc;
+
 void	del(void *num);
 void	print(void *num);
 void	error(void);

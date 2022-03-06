@@ -24,7 +24,7 @@ void	sort_medium_size(t_dlist **a)
 	while (ft_cdlstsize(b) > 0)
 	{
 		stack_info(b, &inf_s);
-		smart_push(a, &b, &inf_s, &inf_r);
+		smart_push_median(a, &b, &inf_s, &inf_r);
 	}
 }
 

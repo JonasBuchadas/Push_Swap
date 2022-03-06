@@ -1,84 +1,167 @@
 #include "push_swap.h"
 
-static int	set_moves(t_i *inf_a, t_i *inf_b);
-static int	set_moves_2(t_i *inf_a, t_i *inf_b, int moves);
-static void	execute_move(t_dlist **a, t_dlist **b, int move);
+static void	check_sender_stack(t_dlist *s, t_s *inf, t_calc *calc);
+static void	restart_calc(t_calc *calc, t_s *inf_a);
+static void	choose_moves(t_s *i_s, t_r *i_r, t_calc *c);
+static void	choose_moves_2(t_s *i_s, t_r *i_r, t_calc *c, int min_moves);
+static void	execute_moves(t_dlist **a, t_dlist **b, t_calc *c);
 
-void	smart_push_a(t_dlist **a, t_dlist **b, t_i *inf_a, t_i *inf_b)
-{
-	int	move;
+void	smart_push_median(t_dlist **a, t_dlist **b, t_s *inf_s, t_r *inf_r)
+{	
+	t_calc	calc;
 
-	check_a(*a, inf_a);
-	check_b(*b, inf_b);
-	move = set_moves(inf_a, inf_b);
-	execute_move(a, b, move);
+	calc.init_size = inf_s->size;
+	restart_calc(&calc, inf_s);
+	while (ft_cdlstsize(*b) > 0)
+	{
+		while (ft_min_int(2, inf_s->rot, inf_s->rrot) < calc.totalmoves
+				|| calc.size > calc.counter_r + calc.counter_rr) // Calculate best move combination between Stack A and Stack B	
+		{
+			check_sender_stack(*b, inf_s, &calc);
+			check_receiver_stack(*a, inf_s, inf_r);
+			choose_moves(inf_s, inf_r, &calc);
+			if (calc.size < calc.counter_r + calc.counter_rr)
+				break;
+		}
+		execute_moves(a, b, &calc);
+		pa(a, b); // Finally push element to stack A
+		stack_info(*b, inf_s); // Update Stack B Info
+		restart_calc(&calc, inf_s);
+	}
 }
 
-static int	set_moves(t_i *inf_a, t_i *inf_b)
+static void	restart_calc(t_calc *calc, t_s *inf_s)
 {
-	int	min_rot;
-	int	min_rrot;
-	int	max_rot;
-	int	max_rrot;
-	int	moves;
-
-	min_rot = max_value(inf_a->min_rot, inf_b->max_rot);
-	min_rrot = max_value(inf_a->min_rrot, inf_b->max_rrot);
-	max_rot = max_value(inf_a->max_rot, inf_b->min_rot);
-	max_rrot = max_value(inf_a->max_rrot, inf_b->min_rrot);
-	if (min_rot <= min_rrot && min_rot <= max_rot && min_rot <= max_rrot)
-		moves = 1;
-	if (min_rrot <= min_rot && min_rrot <= max_rot && min_rrot <= max_rrot)
-		moves = 2;
-	if (max_rot <= min_rot && max_rot <= min_rrot && max_rot <= max_rrot)
-		moves = 3;
-	if (max_rrot <= min_rot && max_rrot <= min_rrot && max_rrot <= max_rot)
-		moves = 4;
-	return (set_moves_2(inf_a, inf_b, moves));
+	calc->totalmoves = calc->init_size;
+	calc->size = inf_s->size;
+	calc->counter_r = 0;
+	calc->counter_rr = 0;
+	calc->s_move = 0;
+	calc->s_num = inf_s->size;
+	calc->s_ops = inf_s->size;
+	calc->r_move = 0;
+	calc->r_num = inf_s->size;
+	calc->r_ops = inf_s->size;
+	inf_s->rot = 0;
+	inf_s->rrot = 0;
 }
 
-static int	set_moves_2(t_i *inf_a, t_i *inf_b, int moves)
+static void	check_sender_stack(t_dlist *s, t_s *inf, t_calc *calc)
 {
-	if ((moves == 1 && inf_a->min_rot != 0 && inf_b->max_rot != 0)
-		|| (moves == 3 && inf_a->max_rot != 0 && inf_b->min_rot != 0))
-		return (5);
-	if ((moves == 2 && inf_a->min_rrot != 0 && inf_b->max_rrot != 0)
-		|| (moves == 4 && inf_a->max_rrot != 0 && inf_b->min_rrot != 0))
-		return (6);
-	if ((moves == 1 && inf_a->min_rot == 0 && inf_b->max_rot == 0)
-		|| (moves == 2 && inf_a->min_rrot == 0 && inf_b->max_rrot == 0)
-		|| (moves == 3 && inf_a->max_rot == 0 && inf_b->min_rot == 0)
-		|| (moves == 4 && inf_a->max_rrot == 0 && inf_b->min_rrot == 0))
-		return (0);
-	if ((moves == 1 && inf_a->min_rot != 0 && inf_b->max_rot == 0)
-		|| (moves == 3 && inf_a->max_rot != 0 && inf_b->min_rot == 0))
-		return (1);
-	if ((moves == 1 && inf_a->min_rot == 0 && inf_b->max_rot != 0)
-		|| (moves == 3 && inf_a->max_rot == 0 && inf_b->min_rot != 0))
-		return (2);
-	if ((moves == 2 && inf_a->min_rrot != 0 && inf_b->max_rrot == 0)
-		|| (moves == 4 && inf_a->max_rrot != 0 && inf_b->min_rrot == 0))
-		return (3);
-	if ((moves == 2 && inf_a->min_rrot == 0 && inf_b->max_rrot != 0)
-		|| (moves == 4 && inf_a->max_rrot == 0 && inf_b->min_rrot != 0))
-		return (4);
-	return (-1);
+	int		r;
+	int		i;
+	t_dlist	*temp;
+
+	if (!s)
+		return ;
+	temp = s;
+	i = 0;
+	r = 0;
+	while (i <= calc->counter_r)
+	{
+		temp = temp->next;
+		r++;
+		i++;
+	}
+	inf->rot = r;
+	inf->r_num = *(int *)temp->content;
+	calc->counter_r++;
+	temp = s;
+	i = 0;
+	r = 0;
+	while (i <= calc->counter_rr)
+	{
+		temp = temp->prev;
+		r++;
+		i++;
+	}
+	inf->rrot = r;
+	inf->rr_num = *(int *)temp->content;
+	calc->counter_rr++;
 }
 
-static void	execute_move(t_dlist **a, t_dlist **b, int move)
+static void choose_moves(t_s *i_s, t_r *i_r, t_calc *c)
 {
-	if (move == 0)
-		pa(a, b);
-	if (move == 1)
-		ra(a);
-	if (move == 2)
-		rb(b);
-	if (move == 3)
-		rra(a);
-	if (move == 4)
-		rrb(b);
-	if (move == 5)
-		rr(a, b);
-	if (move == 6)
-		rrr(a, b);
+	int min_moves;
+
+	c->mc1 = ft_max_int(2, i_s->rot, i_r->r_rot);
+	c->mc2 = i_s->rot + i_r->r_rrot;
+	c->mc3 = i_s->rrot + i_r->rr_rot;
+	c->mc4 = ft_max_int(2, i_s->rrot, i_r->rr_rrot);
+	min_moves = ft_min_int(4, c->mc1, c->mc2, c->mc3, c->mc4);
+	if (min_moves == c->mc1 && min_moves < c->totalmoves)
+	{
+		c->s_move = 1;
+		c->s_ops = i_s->rot;
+		c->r_move = 1;
+		c->r_ops = i_r->r_rot;
+		c->totalmoves = c->mc1;
+	}
+	if (min_moves == c->mc2 && min_moves < c->totalmoves)
+	{
+		c->s_move = 1;
+		c->s_ops = i_s->rot;
+		c->r_move = 2;
+		c->r_ops = i_r->r_rrot;
+		c->totalmoves = c->mc2;
+	}
+	choose_moves_2(i_s, i_r, c, min_moves);
+}
+
+static void choose_moves_2(t_s *i_s, t_r *i_r, t_calc *c, int min_moves)
+{
+	if (min_moves == c->mc3 && min_moves < c->totalmoves)
+	{
+		c->s_move = 2;
+		c->s_ops = i_s->rrot;
+		c->r_move = 1;
+		c->r_ops = i_r->rr_rot;
+		c->totalmoves = c->mc3;
+	}
+	if (min_moves == c->mc4 && min_moves < c->totalmoves)
+	{
+		c->s_move = 2;
+		c->s_ops = i_s->rrot;
+		c->r_move = 2;
+		c->r_ops = i_r->rr_rrot;
+		c->totalmoves = c->mc4;
+	}
+}
+
+static void execute_moves(t_dlist **a, t_dlist **b, t_calc *c)
+{
+	while (c->s_ops > 0 || c->r_ops > 0)
+	{
+		if (c->s_ops > 0 && c->r_ops > 0)
+		{
+			if (c->s_move == 1 && c->r_move == 1)
+			{
+				rr(a, b);
+				c->s_ops--;
+				c->r_ops--;
+			}
+			if (c->s_move == 2 && c->r_move == 2)
+			{
+				rrr(a, b);
+				c->s_ops--;
+				c->r_ops--;
+			}
+		}
+		if (c->s_ops > 0)
+		{
+			if (c->s_move == 1)
+				rb(b);
+			if (c->s_move == 2)
+				rrb(b);
+			c->s_ops--;
+		}
+		if (c->r_ops > 0)
+		{
+			if (c->r_move == 1)
+				ra(a);
+			if (c->r_move == 2)
+				rra(a);
+			c->r_ops--;
+		}
+	}
 }
