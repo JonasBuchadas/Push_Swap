@@ -1,34 +1,24 @@
 #include "push_swap.h"
 
-void	sort_medium_size(t_dlist **a)
+void	sort_large_size(t_dlist **a)
 {
 	t_s		inf_s;
 	t_r		inf_r;
 	t_dlist	*b;
-	t_dlist	*temp;
 
 	b = NULL;
-	while (ft_cdlstsize(*a) > 3)
+	while (ft_cdlstsize(*a) > 5)
 	{
 		stack_info(*a, &inf_s);
 		push_median(a, &b, &inf_s);
 	}
-	if (ft_cdlstsize(*a) == 3)
-		sort_size3(a);
-	if (ft_cdlstsize(*a) == 2)
-		sort_size2(a);
+	sort_stack(a, ft_cdlstsize(*a));
 	while (ft_cdlstsize(b) > 0)
 	{
 		stack_info(b, &inf_s);
 		smart_push_median(a, &b, &inf_s, &inf_r);
 	}
-	stack_info(*a, &inf_s);
-	temp = *a;
-	while (*(int *)temp->content != inf_s.min)
-	{
-		smart_rotate_a(a, inf_s.min);
-		temp = *a;
-	}	
+	smart_rotate_a(a, min_stack(*a));
 }
 
 void	stack_info(t_dlist *stack, t_s *inf)

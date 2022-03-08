@@ -16,12 +16,12 @@ void	smart_rotate_b(t_dlist **stack, int n)
 	}
 	if (steps > (size / 2))
 	{
-		if (*(int *)(*stack)->content != n)
+		while (*(int *)(*stack)->content != n)
 			rrb(stack);
 	}
 	else
 	{	
-		if (*(int *)(*stack)->content != n)
+		while (*(int *)(*stack)->content != n)
 			rb(stack);
 	}
 }
@@ -42,12 +42,12 @@ void	smart_rotate_a(t_dlist **stack, int n)
 	}
 	if (steps > (size / 2))
 	{
-		if (*(int *)(*stack)->content != n)
+		while (*(int *)(*stack)->content != n)
 			rra(stack);
 	}
 	else
 	{	
-		if (*(int *)(*stack)->content != n)
+		while (*(int *)(*stack)->content != n)
 			ra(stack);
 	}
 }

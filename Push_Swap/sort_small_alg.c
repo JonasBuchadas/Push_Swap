@@ -12,18 +12,18 @@ void	sort_size5(t_dlist **a)
 	if (is_sorted(*a))
 		return ;
 	b = NULL;
-	b = pb(a, &b);
+	pb(a, &b);
 	min = min_stack(*a);
 	smart_rotate_a(a, min);
 	if (is_sorted(*a))
 	{
-		(*a) = pa(a, &b);
+		pa(a, &b);
 		return ;
 	}
-	b = pb(a, &b);
+	pb(a, &b);
 	sort_size3(a);
-	(*a) = pa(a, &b);
-	(*a) = pa(a, &b);
+	pa(a, &b);
+	pa(a, &b);
 }
 
 void	sort_size4(t_dlist **a)
@@ -36,9 +36,9 @@ void	sort_size4(t_dlist **a)
 	if (is_sorted(*a))
 		return ;
 	b = NULL;
-	b = pb(a, &b);
+	pb(a, &b);
 	sort_size3(a);
-	(*a) = pa(a, &b);
+	pa(a, &b);
 }
 
 void	sort_size3(t_dlist **stack)

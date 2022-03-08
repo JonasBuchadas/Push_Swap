@@ -20,16 +20,14 @@ static void	push(t_dlist **a, t_dlist **b)
 		*a = NULL;
 }
 
-t_dlist	*pa(t_dlist **a, t_dlist **b)
+void	pa(t_dlist **a, t_dlist **b)
 {
 	push(b, a);
 	write(1, "pa\n", 3);
-	return (*a);
 }
 
-t_dlist	*pb(t_dlist **a, t_dlist **b)
+void	pb(t_dlist **a, t_dlist **b)
 {
 	push(a, b);
 	write(1, "pb\n", 3);
-	return (*b);
 }

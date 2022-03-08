@@ -2,7 +2,6 @@
 
 static void		check_int(char *s, int *arr, int size);
 static t_dlist	*create_stack(int *input, int size);
-static void		sort_stack(t_dlist **stack, int size);
 
 int	main(int argc, char **argv)
 {
@@ -29,6 +28,7 @@ int	main(int argc, char **argv)
 	if (is_sorted(stack))
 		return (0);
 	sort_stack(&stack, size);
+//	ft_cdlstiter(stack, print);
 	mem_clear(strlist, &stack, input);
 	return (0);
 }
@@ -65,7 +65,7 @@ static t_dlist	*create_stack(int *input, int size)
 	return (stack);
 }
 
-static void	sort_stack(t_dlist **stack, int size)
+void	sort_stack(t_dlist **stack, int size)
 {
 	if (size == 2)
 	{
@@ -78,6 +78,8 @@ static void	sort_stack(t_dlist **stack, int size)
 		sort_size4(stack);
 	else if (size == 5)
 		sort_size5(stack);
-	else if (size > 5)
-		sort_medium_size(stack);
+	else if (size <= 100)
+		sort_large_size(stack);
+	else
+		sort_large_size(stack);
 }

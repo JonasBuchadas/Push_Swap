@@ -10,6 +10,8 @@
 typedef struct stack_send_info
 {
 	int	size;
+	int	partitions;
+	int	part_size;
 	int	min;
 	int	min_rot;
 	int	min_rrot;
@@ -66,12 +68,14 @@ void	rr(t_dlist **stack_a, t_dlist **stack_b);
 void	rra(t_dlist **stack);
 void	rrb(t_dlist **stack);
 void	rrr(t_dlist **stack_a, t_dlist **stack_b);
-t_dlist	*pa(t_dlist **a, t_dlist **b);
-t_dlist	*pb(t_dlist **a, t_dlist **b);
+void	pa(t_dlist **a, t_dlist **b);
+void	pb(t_dlist **a, t_dlist **b);
+void	sort_stack(t_dlist **stack, int size);
 void	sort_size2(t_dlist **stack);
 void	sort_size3(t_dlist **stack);
 void	sort_size4(t_dlist **stack);
 void	sort_size5(t_dlist **stack);
+void	sort_large_size(t_dlist **a);
 void	sort_medium_size(t_dlist **a);
 void	smart_rotate_a(t_dlist **stack, int n);
 void	smart_rotate_b(t_dlist **stack, int n);
@@ -81,10 +85,12 @@ int		min_stack(t_dlist *stack);
 char	**parser(int size, char **strlist);
 int		size_strlist(char **strlist);
 void	stack_info(t_dlist *stack, t_s *inf);
+void	stack_info_partition(t_dlist *stack, t_s *inf);
 void	check_a(t_dlist *a, t_s *inf_s);
 void	check_b(t_dlist *b, t_s *inf_r);
 void	smart_push_median(t_dlist **a, t_dlist **b, t_s *inf_s, t_r *inf_r);
 void	push_median(t_dlist **a, t_dlist **b, t_s *inf_s);
+void	push_partition(t_dlist **a, t_dlist **b, t_s *inf_s);
 void	check_receiver_stack(t_dlist *r, t_s *inf_s, t_r *inf_r);
 void	smart_push_a(t_dlist **a, t_dlist **b, t_s *inf_s, t_r *inf_r);
 void	smart_push(t_dlist **s, t_dlist **r, t_s *inf_s, t_r *inf_r);
