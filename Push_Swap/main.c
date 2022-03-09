@@ -28,7 +28,6 @@ int	main(int argc, char **argv)
 	if (is_sorted(stack))
 		return (0);
 	sort_stack(&stack, size);
-//	ft_cdlstiter(stack, print);
 	mem_clear(strlist, &stack, input);
 	return (0);
 }
@@ -63,23 +62,4 @@ static t_dlist	*create_stack(int *input, int size)
 		ft_cdlstadd_back(&stack, temp);
 	}
 	return (stack);
-}
-
-void	sort_stack(t_dlist **stack, int size)
-{
-	if (size == 2)
-	{
-		if (!(is_sorted(*stack)))
-			sa(stack);
-	}
-	else if (size == 3)
-		sort_size3(stack);
-	else if (size == 4)
-		sort_size4(stack);
-	else if (size == 5)
-		sort_size5(stack);
-	else if (size <= 100)
-		sort_large_size(stack);
-	else
-		sort_large_size(stack);
 }

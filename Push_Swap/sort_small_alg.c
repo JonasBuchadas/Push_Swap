@@ -1,8 +1,28 @@
 #include "push_swap.h"
 
+static void	sort_size5(t_dlist **a);
+static void	sort_size4(t_dlist **a);
+static void	sort_size3(t_dlist **stack);
 static int	check_order(t_dlist *stack);
 
-void	sort_size5(t_dlist **a)
+void	sort_stack(t_dlist **stack, int size)
+{
+	if (size == 2)
+	{
+		if (!(is_sorted(*stack)))
+			sa(stack);
+	}
+	else if (size == 3)
+		sort_size3(stack);
+	else if (size == 4)
+		sort_size4(stack);
+	else if (size == 5)
+		sort_size5(stack);
+	else
+		sort_large_size(stack);
+}
+
+static void	sort_size5(t_dlist **a)
 {
 	t_dlist	*b;
 	int		min;
@@ -26,7 +46,7 @@ void	sort_size5(t_dlist **a)
 	pa(a, &b);
 }
 
-void	sort_size4(t_dlist **a)
+static void	sort_size4(t_dlist **a)
 {
 	t_dlist	*b;
 	int		min;
@@ -41,7 +61,7 @@ void	sort_size4(t_dlist **a)
 	pa(a, &b);
 }
 
-void	sort_size3(t_dlist **stack)
+static void	sort_size3(t_dlist **stack)
 {
 	int	condition;
 
@@ -62,12 +82,6 @@ void	sort_size3(t_dlist **stack)
 		sa(stack);
 		rra(stack);
 	}
-}
-
-void	sort_size2(t_dlist **stack)
-{
-	if (!(is_sorted(*stack)))
-		sa(stack);
 }
 
 static int	check_order(t_dlist *stack)

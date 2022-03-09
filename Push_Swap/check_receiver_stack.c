@@ -1,7 +1,7 @@
 #include "push_swap.h"
 
 static void	analyze_r(t_dlist *r, t_s *inf_s, t_r *inf_r);
-static void r_insert_values(int *sorted, int max, t_s *inf_s, t_r *inf_r);
+static void	r_insert_values(int *sorted, int max, t_s *inf_s, t_r *inf_r);
 static void	min_rmoves_r(t_dlist *b, t_r *inf_r);
 static void	min_rrmoves_r(t_dlist *b, t_r *inf_r);
 
@@ -40,13 +40,13 @@ static void	analyze_r(t_dlist *r, t_s *inf_s, t_r *inf_r)
 	}
 	sorted[++i] = *(int *)temp->content;
 	ft_sort_int_tab(sorted, size);
-	r_insert_values(sorted, i,inf_s, inf_r);
+	r_insert_values(sorted, i, inf_s, inf_r);
 	free(sorted);
 }
 
-static void r_insert_values(int *sorted, int max, t_s *inf_s, t_r *inf_r)
+static void	r_insert_values(int *sorted, int max, t_s *inf_s, t_r *inf_r)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (inf_s->r_num < sorted[0] || inf_s->r_num > sorted[max])

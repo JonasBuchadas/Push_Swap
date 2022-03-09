@@ -1,10 +1,8 @@
 #include "push_swap.h"
 
-static void	check_sender_stack(t_dlist *s, t_s *inf, t_calc *calc);
 static void	restart_calc(t_calc *calc, t_s *inf_a);
 static void	choose_moves(t_s *i_s, t_r *i_r, t_calc *c);
 static void	choose_moves_2(t_s *i_s, t_r *i_r, t_calc *c, int min_moves);
-static void	execute_moves(t_dlist **a, t_dlist **b, t_calc *c);
 
 void	smart_push_median(t_dlist **a, t_dlist **b, t_s *inf_s, t_r *inf_r)
 {	
@@ -44,40 +42,6 @@ static void	restart_calc(t_calc *calc, t_s *inf_s)
 	calc->r_ops = inf_s->size;
 	inf_s->rot = 0;
 	inf_s->rrot = 0;
-}
-
-static void	check_sender_stack(t_dlist *s, t_s *inf, t_calc *calc)
-{
-	int		r;
-	int		i;
-	t_dlist	*temp;
-
-	if (!s)
-		return ;
-	temp = s;
-	i = 0;
-	r = 0;
-	while (i <= calc->counter_r)
-	{
-		temp = temp->next;
-		r++;
-		i++;
-	}
-	inf->rot = r;
-	inf->r_num = *(int *)temp->content;
-	calc->counter_r++;
-	temp = s;
-	i = 0;
-	r = 0;
-	while (i <= calc->counter_rr)
-	{
-		temp = temp->prev;
-		r++;
-		i++;
-	}
-	inf->rrot = r;
-	inf->rr_num = *(int *)temp->content;
-	calc->counter_rr++;
 }
 
 static void	choose_moves(t_s *i_s, t_r *i_r, t_calc *c)
@@ -125,43 +89,5 @@ static void	choose_moves_2(t_s *i_s, t_r *i_r, t_calc *c, int min_moves)
 		c->r_move = 2;
 		c->r_ops = i_r->rr_rrot;
 		c->totalmoves = c->mc4;
-	}
-}
-
-static void	execute_moves(t_dlist **a, t_dlist **b, t_calc *c)
-{
-	while (c->s_ops > 0 || c->r_ops > 0)
-	{
-		if (c->s_ops > 0 && c->r_ops > 0)
-		{
-			if (c->s_move == 1 && c->r_move == 1)
-			{
-				rr(a, b);
-				c->s_ops--;
-				c->r_ops--;
-			}
-			if (c->s_move == 2 && c->r_move == 2)
-			{
-				rrr(a, b);
-				c->s_ops--;
-				c->r_ops--;
-			}
-		}
-		if (c->s_ops > 0)
-		{
-			if (c->s_move == 1)
-				rb(b);
-			if (c->s_move == 2)
-				rrb(b);
-			c->s_ops--;
-		}
-		if (c->r_ops > 0)
-		{
-			if (c->r_move == 1)
-				ra(a);
-			if (c->r_move == 2)
-				rra(a);
-			c->r_ops--;
-		}
 	}
 }
