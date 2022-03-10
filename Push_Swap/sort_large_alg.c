@@ -12,7 +12,7 @@ void	sort_large_size(t_dlist **a)
 		stack_info(*a, &inf_s);
 		push_median(a, &b, &inf_s);
 	}
-	sort_stack(a, ft_cdlstsize(*a));
+	sort_stack(a);
 	while (ft_cdlstsize(b) > 0)
 	{
 		stack_info(b, &inf_s);

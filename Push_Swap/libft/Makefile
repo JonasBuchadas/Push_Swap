@@ -1,6 +1,6 @@
 CC=		gcc
 
-CFLAGS=	-Wall -Werror -Wextra -g
+CFLAGS=	-Wall -Werror -Wextra
 
 NAME=	libft.a
 

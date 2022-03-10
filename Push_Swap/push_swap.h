@@ -70,7 +70,7 @@ void	rrb(t_dlist **stack);
 void	rrr(t_dlist **stack_a, t_dlist **stack_b);
 void	pa(t_dlist **a, t_dlist **b);
 void	pb(t_dlist **a, t_dlist **b);
-void	sort_stack(t_dlist **stack, int size);
+void	sort_stack(t_dlist **stack);
 void	sort_large_size(t_dlist **a);
 void	smart_rotate_a(t_dlist **stack, int n);
 void	smart_rotate_b(t_dlist **stack, int n);

@@ -5,8 +5,11 @@ static void	sort_size4(t_dlist **a);
 static void	sort_size3(t_dlist **stack);
 static int	check_order(t_dlist *stack);
 
-void	sort_stack(t_dlist **stack, int size)
+void	sort_stack(t_dlist **stack)
 {
+	int	size;
+
+	size = ft_cdlstsize(*stack);
 	if (size == 2)
 	{
 		if (!(is_sorted(*stack)))
