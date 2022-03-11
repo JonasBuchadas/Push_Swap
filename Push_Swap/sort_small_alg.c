@@ -13,7 +13,7 @@ void	sort_stack(t_dlist **stack)
 	if (size == 2)
 	{
 		if (!(is_sorted(*stack)))
-			sa(stack);
+			sa(stack, true);
 	}
 	else if (size == 3)
 		sort_size3(stack);
@@ -35,18 +35,18 @@ static void	sort_size5(t_dlist **a)
 	if (is_sorted(*a))
 		return ;
 	b = NULL;
-	pb(a, &b);
+	pb(a, &b, true);
 	min = min_stack(*a);
 	smart_rotate_a(a, min);
 	if (is_sorted(*a))
 	{
-		pa(a, &b);
+		pa(a, &b, true);
 		return ;
 	}
-	pb(a, &b);
+	pb(a, &b, true);
 	sort_size3(a);
-	pa(a, &b);
-	pa(a, &b);
+	pa(a, &b, true);
+	pa(a, &b, true);
 }
 
 static void	sort_size4(t_dlist **a)
@@ -59,9 +59,9 @@ static void	sort_size4(t_dlist **a)
 	if (is_sorted(*a))
 		return ;
 	b = NULL;
-	pb(a, &b);
+	pb(a, &b, true);
 	sort_size3(a);
-	pa(a, &b);
+	pa(a, &b, true);
 }
 
 static void	sort_size3(t_dlist **stack)
@@ -70,20 +70,20 @@ static void	sort_size3(t_dlist **stack)
 
 	condition = check_order(*stack);
 	if (condition == 1)
-		sa(stack);
+		sa(stack, true);
 	else if (condition == 2)
 	{
-		sa(stack);
-		ra(stack);
+		sa(stack, true);
+		ra(stack, true);
 	}
 	else if (condition == 5)
-		ra(stack);
+		ra(stack, true);
 	else if (condition == 6)
-		rra(stack);
+		rra(stack, true);
 	else if (condition == 7)
 	{
-		sa(stack);
-		rra(stack);
+		sa(stack, true);
+		rra(stack, true);
 	}
 }
 

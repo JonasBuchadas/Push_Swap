@@ -90,23 +90,23 @@ static void sort_stack_from_input(t_dlist **a, int fd)
 static void execute_input(t_dlist **a, t_dlist **b, char *line)
 {
     if (line[0] == 's' && line[1] == 'a')
-		sa(a);
+		sa(a, false);
 	else if (line[0] == 's' && line[1] == 'b')
-		sb(b);
+		sb(b, false);
 	else if (line[0] == 'r' && line[1] == 'a')
-		ra(a);
+		ra(a, false);
 	else if (line[0] == 'r' && line[1] == 'b')
-		rb(b);
+		rb(b, false);
 	else if (line[0] == 'r' && line[1] == 'r')
-		rr(a, b);
+		rr(a, b, false);
 	else if (line[0] == 'p' && line[1] == 'a')
-		pa(a, b);
+		pa(a, b, false);
 	else if (line[0] == 'p' && line[1] == 'b')
-		pb(a, b);
+		pb(a, b, false);
 	else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'a')
-		rra(a);
+		rra(a, false);
 	else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'b')
-		rrb(b);
+		rrb(b, false);
 	else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'r')
-		rrr(a, b);
+		rrr(a, b, false);
 }

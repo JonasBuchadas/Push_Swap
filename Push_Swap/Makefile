@@ -57,7 +57,7 @@ $(LIBFT):
 	@echo "Libft Library Created"
 
 $(GNL):
-	@make bonus -C $(GNL_DIR)
+	@make -C $(GNL_DIR)
 	@cp $(GNL_DIR)/$(GNL) $(GNL)
 	@echo "Get_Next_Line Library Created"
 

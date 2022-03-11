@@ -22,7 +22,7 @@ void	smart_push_median(t_dlist **a, t_dlist **b, t_s *inf_s, t_r *inf_r)
 				break ;
 		}
 		execute_moves(a, b, &calc);
-		pa(a, b);
+		pa(a, b, true);
 		stack_info(*b, inf_s);
 		restart_calc(&calc, inf_s);
 	}

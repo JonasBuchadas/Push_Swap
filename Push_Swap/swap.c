@@ -40,20 +40,20 @@ static void	swap_largelst(t_dlist **stack)
 	*stack = swap2;
 }
 
-void	sa(t_dlist **stack)
+void	sa(t_dlist **stack, bool print)
 {
-	if (swap(stack))
+	if (swap(stack) && print)
 		write(1, &"sa\n", 3);
 }
 
-void	sb(t_dlist **stack)
+void	sb(t_dlist **stack, bool print)
 {
-	if (swap(stack))
+	if (swap(stack) && print)
 		write(1, &"sb\n", 3);
 }
 
-void	ss(t_dlist **stack_a, t_dlist **stack_b)
+void	ss(t_dlist **stack_a, t_dlist **stack_b, bool print)
 {
-	if (swap(stack_a) || swap(stack_b))
+	if ((swap(stack_a) || swap(stack_b)) && print)
 		write(1, &"ss\n", 3);
 }

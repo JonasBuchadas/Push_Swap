@@ -1,6 +1,6 @@
 CC=		gcc
 
-CFLAGS=	-Wall -Werror -Wextra -D BUFFER_SIZE=$(BUFFER_SIZE)
+CFLAGS=	-Wall -Werror -Wextra -g
 
 BUFFER_SIZE= 5
 

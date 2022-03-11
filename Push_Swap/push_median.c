@@ -48,7 +48,7 @@ static int	choose_moves(t_s *i_s)
 static void	execute_moves_median(t_dlist **a, t_dlist **b, int m)
 {
 	if (m == 0)
-		pb(a, b);
+		pb(a, b, true);
 	else if (m == 1)
-		ra(a);
+		ra(a, true);
 }

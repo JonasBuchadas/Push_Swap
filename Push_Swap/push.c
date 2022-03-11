@@ -20,14 +20,16 @@ static void	push(t_dlist **a, t_dlist **b)
 		*a = NULL;
 }
 
-void	pa(t_dlist **a, t_dlist **b)
+void	pa(t_dlist **a, t_dlist **b, bool print)
 {
 	push(b, a);
-	write(1, "pa\n", 3);
+	if (print)
+		write(1, "pa\n", 3);
 }
 
-void	pb(t_dlist **a, t_dlist **b)
+void	pb(t_dlist **a, t_dlist **b, bool print)
 {
 	push(a, b);
-	write(1, "pb\n", 3);
+	if (print)
+		write(1, "pb\n", 3);
 }
