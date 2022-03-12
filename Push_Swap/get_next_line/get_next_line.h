@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFFER_SIZE 5
+# define BUFFER_SIZE 1
 
 char	*ft_gnl_substr(char *s, unsigned int start, size_t len);
 char	*ft_gnl_strchr(const char *s, int c);

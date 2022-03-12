@@ -4,7 +4,7 @@ CFLAGS=		-Wall -Werror -Wextra -g
 
 NAME=		push_swap
 
-BONUS=		checker_1		
+BONUS=		checker
 
 SRCS=		push_swap.c sort_small_alg.c sort_large_alg.c push_median.c \
 			smart_push_a.c check_receiver_stack.c check_sender_stack.c execute_moves.c

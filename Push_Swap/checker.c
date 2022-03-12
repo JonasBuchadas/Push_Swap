@@ -1,9 +1,9 @@
 #include "checker.h"
 
-static void	check_int(char *s, int *arr, int size);
+static void		check_int(char *s, int *arr, int size);
 static t_dlist	*create_stack(int *input, int size);
-static void sort_stack_from_input(t_dlist **a, int fd);
-static void execute_input(t_dlist **a, t_dlist **b, char *line);
+static void		sort_stack_from_input(t_dlist **a, int fd);
+static void		execute_input(t_dlist **a, t_dlist **b, char *line);
 
 int	main(int argc, char **argv)
 {
@@ -66,30 +66,30 @@ static t_dlist	*create_stack(int *input, int size)
 	return (stack);
 }
 
-
-static void sort_stack_from_input(t_dlist **a, int fd)
+static void	sort_stack_from_input(t_dlist **a, int fd)
 {
-    char    *line;
-    int     size;
-    t_dlist *b;
+	char	*line;
+	int		size;
+	t_dlist	*b;
 
-    size = ft_cdlstsize(*a);
-    b = NULL;
-    line = get_next_line(fd);
-    while (line)
-    {
-        execute_input(a, &b, line);
-        line = get_next_line(fd);
-    }
-    if (is_sorted(*a) && ft_cdlstsize(*a) == size)
-        write(1, &"OK\n", 4);
-    else
-        write(1, &"KO\n", 4);
+	size = ft_cdlstsize(*a);
+	b = NULL;
+	line = get_next_line(fd);
+	while (line)
+	{
+		execute_input(a, &b, line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	if (is_sorted(*a) && ft_cdlstsize(*a) == size)
+		write(1, &"OK\n", 3);
+	else
+		write(1, &"KO\n", 3);
 }
 
-static void execute_input(t_dlist **a, t_dlist **b, char *line)
+static void	execute_input(t_dlist **a, t_dlist **b, char *line)
 {
-    if (line[0] == 's' && line[1] == 'a')
+	if (line[0] == 's' && line[1] == 'a')
 		sa(a, false);
 	else if (line[0] == 's' && line[1] == 'b')
 		sb(b, false);
@@ -97,16 +97,16 @@ static void execute_input(t_dlist **a, t_dlist **b, char *line)
 		ra(a, false);
 	else if (line[0] == 'r' && line[1] == 'b')
 		rb(b, false);
-	else if (line[0] == 'r' && line[1] == 'r')
-		rr(a, b, false);
-	else if (line[0] == 'p' && line[1] == 'a')
-		pa(a, b, false);
-	else if (line[0] == 'p' && line[1] == 'b')
-		pb(a, b, false);
 	else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'a')
 		rra(a, false);
 	else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'b')
 		rrb(b, false);
 	else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'r')
 		rrr(a, b, false);
+	else if (line[0] == 'r' && line[1] == 'r')
+		rr(a, b, false);
+	else if (line[0] == 'p' && line[1] == 'a')
+		pa(a, b, false);
+	else if (line[0] == 'p' && line[1] == 'b')
+		pb(a, b, false);
 }
