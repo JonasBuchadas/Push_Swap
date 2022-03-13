@@ -16,6 +16,7 @@
 # include <stddef.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <stdlib.h>
 
 typedef struct s_list
 {
@@ -29,6 +30,8 @@ typedef struct d_list
 	struct d_list	*next;
 	struct d_list	*prev;
 }					t_dlist;
+
+# define BUFFER_SIZE 1
 
 // MANDATORY PROTOTYPES
 int		ft_atoi(const char *str);
@@ -85,6 +88,7 @@ void	ft_cdlstdelone(t_dlist *lst, void (*del)(void *));
 void	ft_cdlstclear(t_dlist **lst, void (*del)(void *));
 void	ft_cdlstiter(t_dlist *lst, void (*f)(void *));
 // ADDITIONAL PROTOTYPES
+char	*ft_get_next_line(int fd);
 void	ft_sort_int_tab(int *tab, int size);
 int		ft_min_int(int n, ...);
 int		ft_max_int(int n, ...);

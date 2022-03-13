@@ -1,23 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jocaetan <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 14:34:09 by jocaetan          #+#    #+#             */
-/*   Updated: 2021/11/18 14:29:54 by jocaetan         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "get_next_line.h"
+#include "libft.h"
 
 static char	*line(char *str);
 static char	*remove_line(char *str);
 static char	*get_next_buffer(int fd);
 static char	*join_until_nl(int fd, char *str);
 
-char	*get_next_line(int fd)
+char	*ft_get_next_line(int fd)
 {
 	static char	*str;
 	char		*temp;
@@ -28,18 +16,18 @@ char	*get_next_line(int fd)
 	next = get_next_buffer(fd);
 	temp = str;
 	if (temp)
-		str = ft_gnl_strjoin(temp, next);
+		str = ft_strjoin(temp, next);
 	else
-		str = ft_gnl_strjoin(NULL, next);
+		str = ft_strdup(next);
 	if (next)
 		free(next);
 	if (temp)
 		free(temp);
 	if (!str)
 		return (NULL);
-	if (!ft_gnl_strchr(str, '\n'))
+	if (!ft_strchr(str, '\n'))
 		str = join_until_nl(fd, str);
-	temp = ft_gnl_strdup(str);
+	temp = ft_strdup(str);
 	str = remove_line(str);
 	return (line(temp));
 }
@@ -70,10 +58,10 @@ static char	*join_until_nl(int fd, char *str)
 	next = get_next_buffer(fd);
 	if (!next)
 		return (str);
-	while (!ft_gnl_strchr(next, '\n'))
+	while (!ft_strchr(next, '\n'))
 	{
 		temp = str;
-		str = ft_gnl_strjoin(temp, next);
+		str = ft_strjoin(temp, next);
 		if (next)
 			free (next);
 		if (temp)
@@ -83,7 +71,7 @@ static char	*join_until_nl(int fd, char *str)
 			return (str);
 	}
 	temp = str;
-	str = ft_gnl_strjoin(temp, next);
+	str = ft_strjoin(temp, next);
 	if (next)
 		free(next);
 	if (temp)
@@ -99,7 +87,7 @@ static char	*remove_line(char *str)
 
 	if (!str)
 		return (NULL);
-	strlen = ft_gnl_strlen(str);
+	strlen = ft_strlen(str);
 	linelen = -1;
 	while (str[++linelen])
 	{
@@ -109,7 +97,7 @@ static char	*remove_line(char *str)
 			break ;
 		}
 	}
-	new_str = ft_gnl_substr(str, linelen, (strlen - linelen));
+	new_str = ft_substr(str, linelen, (strlen - linelen));
 	if (new_str[0] == '\0')
 	{
 		free(new_str);

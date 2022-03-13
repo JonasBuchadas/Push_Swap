@@ -1,6 +1,6 @@
 CC=			gcc
 
-CFLAGS=		-Wall -Werror -Wextra -g
+CFLAGS=		-Wall -Werror -Wextra
 
 NAME=		push_swap
 
@@ -24,23 +24,19 @@ LIBFT_DIR=	./libft
 
 LIBFT=		libft.a
 
-GNL_DIR=	./get_next_line
-
-GNL=		get_next_line.a
-
-INC=		-I $(LIBFT_DIR) -I $(GNL_DIR)
+INC=		-I $(LIBFT_DIR)
 
 all: $(NAME)
 
 bonus: $(BONUS)
 
-$(BONUS): $(OBJ_BONUS) $(OBJ_BOTH) $(LIBFT) $(GNL)
+$(BONUS): $(OBJ_BONUS) $(OBJ_BOTH) $(LIBFT)
 	@$(CC) $(CFLAGS) $^ $(INC) -o $@
-	@echo "Checker Program Created"
+	@echo -e "$(GREEN)Checker Program Created$(DEFAULT)"
 
 $(NAME): $(OBJS) $(OBJ_BOTH) $(LIBFT)
 	@$(CC) $(CFLAGS) $^ $(INC) -o $@
-	@echo "Push_Swap Program Created"
+	@echo -e "$(GREEN)Push_Swap Program Created$(DEFAULT)"
 
 $(OBJS): $(SRCS) 
 	@$(CC) $(CFLAGS) $(INC) -c $^
@@ -54,29 +50,24 @@ $(OBJ_BOTH): $(SRC_BOTH)
 $(LIBFT):
 	@make bonus -C $(LIBFT_DIR)
 	@cp $(LIBFT_DIR)/$(LIBFT) $(LIBFT)
-	@echo "Libft Library Created"
-
-$(GNL):
-	@make -C $(GNL_DIR)
-	@cp $(GNL_DIR)/$(GNL) $(GNL)
-	@echo "Get_Next_Line Library Created"
+	@echo -e "$(GREEN)Libft Library Created$(DEFAULT)"
 
 clean:
 	@make clean -C $(LIBFT_DIR)
-	@make clean -C $(GNL_DIR)
 	@rm -f $(OBJS) $(OBJ_BONUS) $(OBJ_BOTH)
-	@echo "Object Files Removed"
+	@echo -e "$(RED)Object Files Removed$(DEFAULT)"
 
 fclean: clean
 	@rm -f $(LIBFT_DIR)/$(LIBFT)
 	@rm -f $(LIBFT)
-	@echo "Libft Library Removed"
-	@rm -f $(GNL_DIR)/$(GNL)
-	@rm -f $(GNL)
-	@echo "Get_Next_Line Library Removed"
+	@echo -e "$(RED)Libft Library Removed$(DEFAULT)"
 	@rm -f $(NAME)
-	@echo "Push_Swap Program Removed"
+	@echo -e "$(RED)Push_Swap Program Removed$(DEFAULT)"
 	@rm -f $(BONUS)
-	@echo "Checker Program Removed"
+	@echo -e "$(RED)Checker Program Removed$(DEFAULT)"
 
 re: fclean all
+
+GREEN= \033[1;32m
+RED= \033[1;31m
+DEFAULT= \033[0m

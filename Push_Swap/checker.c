@@ -74,12 +74,12 @@ static void	sort_stack_from_input(t_dlist **a, int fd)
 
 	size = ft_cdlstsize(*a);
 	b = NULL;
-	line = get_next_line(fd);
+	line = ft_get_next_line(fd);
 	while (line)
 	{
 		execute_input(a, &b, line);
 		free(line);
-		line = get_next_line(fd);
+		line = ft_get_next_line(fd);
 	}
 	if (is_sorted(*a) && ft_cdlstsize(*a) == size)
 		write(1, &"OK\n", 3);
@@ -89,7 +89,9 @@ static void	sort_stack_from_input(t_dlist **a, int fd)
 
 static void	execute_input(t_dlist **a, t_dlist **b, char *line)
 {
-	if (line[0] == 's' && line[1] == 'a')
+	if (line[0] == 's' && line[1] == 's')
+		ss(a, b, false);
+	else if (line[0] == 's' && line[1] == 'a')
 		sa(a, false);
 	else if (line[0] == 's' && line[1] == 'b')
 		sb(b, false);
