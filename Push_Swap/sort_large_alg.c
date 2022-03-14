@@ -3,7 +3,7 @@
 void	sort_large_size(t_dlist **a)
 {
 	t_s		inf_s;
-	t_r		inf_r;
+//	t_r		inf_r;
 	t_dlist	*b;
 
 	b = NULL;
@@ -16,7 +16,7 @@ void	sort_large_size(t_dlist **a)
 	while (ft_cdlstsize(b) > 0)
 	{
 		stack_info(b, &inf_s);
-		smart_push_median(a, &b, &inf_s, &inf_r);
+		smart_push_median(a, &b, &inf_s);
 	}
 	smart_rotate_a(a, min_stack(*a));
 }

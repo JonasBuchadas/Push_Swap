@@ -4,9 +4,10 @@ static void	restart_calc(t_calc *calc, t_s *inf_a);
 static void	choose_moves(t_s *i_s, t_r *i_r, t_calc *c);
 static void	choose_moves_2(t_s *i_s, t_r *i_r, t_calc *c, int min_moves);
 
-void	smart_push_median(t_dlist **a, t_dlist **b, t_s *inf_s, t_r *inf_r)
+void	smart_push_median(t_dlist **a, t_dlist **b, t_s *inf_s)
 {	
 	t_calc	calc;
+	t_r		inf_r;
 
 	calc.init_size = inf_s->size;
 	restart_calc(&calc, inf_s);
@@ -16,8 +17,8 @@ void	smart_push_median(t_dlist **a, t_dlist **b, t_s *inf_s, t_r *inf_r)
 			|| calc.size > calc.counter_r + calc.counter_rr)
 		{
 			check_sender_stack(*b, inf_s, &calc);
-			check_receiver_stack(*a, inf_s, inf_r);
-			choose_moves(inf_s, inf_r, &calc);
+			check_receiver_stack(*a, inf_s, &inf_r);
+			choose_moves(inf_s, &inf_r, &calc);
 			if (calc.size < calc.counter_r + calc.counter_rr)
 				break ;
 		}

@@ -83,7 +83,7 @@ void	stack_info(t_dlist *stack, t_s *inf);
 void	stack_info_partition(t_dlist *stack, t_s *inf);
 void	check_a(t_dlist *a, t_s *inf_s);
 void	check_b(t_dlist *b, t_s *inf_r);
-void	smart_push_median(t_dlist **a, t_dlist **b, t_s *inf_s, t_r *inf_r);
+void	smart_push_median(t_dlist **a, t_dlist **b, t_s *inf_s);
 void	push_median(t_dlist **a, t_dlist **b, t_s *inf_s);
 void	push_partition(t_dlist **a, t_dlist **b, t_s *inf_s);
 void	check_receiver_stack(t_dlist *r, t_s *inf_s, t_r *inf_r);
