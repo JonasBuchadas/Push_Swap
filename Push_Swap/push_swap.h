@@ -75,7 +75,6 @@ void	sort_large_size(t_dlist **a);
 void	smart_rotate_a(t_dlist **stack, int n);
 void	smart_rotate_b(t_dlist **stack, int n);
 bool	is_sorted(t_dlist *stack);
-bool	is_sorted_rev(t_dlist *stack);
 int		min_stack(t_dlist *stack);
 char	**parser(int size, char **strlist);
 int		size_strlist(char **strlist);

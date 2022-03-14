@@ -3,7 +3,6 @@
 void	sort_large_size(t_dlist **a)
 {
 	t_s		inf_s;
-//	t_r		inf_r;
 	t_dlist	*b;
 
 	b = NULL;

@@ -41,4 +41,3 @@ static void	execute_moves_median(t_dlist **a, t_dlist **b, t_s *i_s)
 	else
 		ra(a, true);
 }	
-
