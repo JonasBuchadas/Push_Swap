@@ -25,9 +25,8 @@ int	main(int argc, char **argv)
 		input[i] = ft_atoi((const char *)strlist[i]);
 	}
 	stack = create_stack(input, size);
-	if (is_sorted(stack))
-		return (0);
-	sort_stack(&stack);
+	if (!is_sorted(stack))
+		sort_stack(&stack);
 	mem_clear(strlist, &stack, input);
 	return (0);
 }

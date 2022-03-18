@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static void	check_sender_stack_median(t_dlist *a, int median, t_s *inf);
+static void	check_sender_stack_median(t_dlist *s, int median, t_s *inf);
 static void	execute_moves_median(t_dlist **a, t_dlist **b, t_s *i_s);
 
 void	push_median(t_dlist **s, t_dlist **r, t_s *inf_s)
