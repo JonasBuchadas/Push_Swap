@@ -35,6 +35,14 @@ static void	check_int(char *s, int *arr, int size)
 	int	n;
 	int	i;
 
+	i = -1;
+	if (s[0] == '-' && ft_isdigit(s[1]) == 1)
+		i++;
+	while (s[++i])
+	{	
+		if (ft_isdigit(s[i]) == 0)
+			error();
+	}		
 	n = ft_atoi((const char *)s);
 	if (n == 0 && ft_strncmp(s, "0", 1) != 0)
 		error();
