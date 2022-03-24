@@ -6,8 +6,18 @@ NAME=		push_swap
 
 BONUS=		checker
 
-SRCS=		push_swap.c sort_small_alg.c sort_large_alg.c push_median.c \
-			smart_push_a.c check_receiver_stack.c check_sender_stack.c execute_moves.c
+SRCS=		push_swap.c \
+			sort_algs.c \
+			sort_medium_alg.c \
+			sort_medium_comb.c \
+			sort_large_alg.c \
+			check_receiver_stack.c \
+			check_sender_stack.c \
+			execute_moves.c \
+			smart_push.c \
+			push_median_a.c \
+			push_median_b.c \
+			sort_stack_print.c
 
 OBJS=		$(SRCS:.c=.o)
 
@@ -15,8 +25,12 @@ SRC_BONUS=	checker.c
 
 OBJ_BONUS=	$(SRC_BONUS:.c=.o)
 
-SRC_BOTH=	func_ptr.c swap.c rotate.c reverse_rotate.c push.c \
-			smart_moves.c parser.c
+SRC_BOTH=	func_ptr.c \
+			swap.c rotate.c \
+			reverse_rotate.c \
+			push.c \
+			smart_moves.c \
+			parser.c
 
 OBJ_BOTH=	$(SRC_BOTH:.c=.o)
 

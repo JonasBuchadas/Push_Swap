@@ -1,6 +1,9 @@
 #include "push_swap.h"
 
-void	smart_rotate_b(t_dlist **stack, int n)
+static void	rra_until_n(t_dlist **stack, int n, t_s *i_s);
+static void	ra_until_n(t_dlist **stack, int n, t_s *i_s);
+
+void	smart_rotate_a_print(t_dlist **stack, int n, t_s *i_s)
 {
 	int		size;
 	int		steps;
@@ -15,40 +18,26 @@ void	smart_rotate_b(t_dlist **stack, int n)
 		temp = temp->next;
 	}
 	if (steps > (size / 2))
-	{
-		while (*(int *)(*stack)->content != n)
-			rrb(stack, true);
-	}
+		rra_until_n(stack, n, i_s);
 	else
-	{	
-		while (*(int *)(*stack)->content != n)
-			rb(stack, true);
+		ra_until_n(stack, n, i_s);
+}
+
+static void	rra_until_n(t_dlist **stack, int n, t_s *i_s)
+{
+	while (*(int *)(*stack)->content != n)
+	{
+		rra(stack, i_s->print);
+		i_s->moves++;
 	}
 }
 
-void	smart_rotate_a(t_dlist **stack, int n)
+static void	ra_until_n(t_dlist **stack, int n, t_s *i_s)
 {
-	int		size;
-	int		steps;
-	t_dlist	*temp;
-
-	size = ft_cdlstsize(*stack);
-	temp = *stack;
-	steps = 0;
-	while (*(int *)(temp)->content != n)
+	while (*(int *)(*stack)->content != n)
 	{
-		steps++;
-		temp = temp->next;
-	}
-	if (steps > (size / 2))
-	{
-		while (*(int *)(*stack)->content != n)
-			rra(stack, true);
-	}
-	else
-	{	
-		while (*(int *)(*stack)->content != n)
-			ra(stack, true);
+		ra(stack, i_s->print);
+		i_s->moves++;
 	}
 }
 

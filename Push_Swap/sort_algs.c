@@ -3,9 +3,8 @@
 static void	sort_size5(t_dlist **a);
 static void	sort_size4(t_dlist **a);
 static void	sort_size3(t_dlist **stack);
-static int	check_order(t_dlist *stack);
 
-void	sort_stack(t_dlist **stack)
+void	sort_stack(t_dlist **stack, int *arr)
 {
 	int	size;
 
@@ -21,6 +20,8 @@ void	sort_stack(t_dlist **stack)
 		sort_size4(stack);
 	else if (size == 5)
 		sort_size5(stack);
+	else if (size <= 100)
+		sort_medium_size(stack, arr);
 	else
 		sort_large_size(stack);
 }
@@ -87,7 +88,7 @@ static void	sort_size3(t_dlist **stack)
 	}
 }
 
-static int	check_order(t_dlist *stack)
+int	check_order(t_dlist *stack)
 {
 	int		result;
 	t_dlist	*first;

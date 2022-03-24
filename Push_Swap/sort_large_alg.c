@@ -6,18 +6,20 @@ void	sort_large_size(t_dlist **a)
 	t_dlist	*b;
 
 	b = NULL;
+	inf_s.moves = 0;
+	inf_s.print = true;
 	while (ft_cdlstsize(*a) > 5)
 	{
 		stack_info(*a, &inf_s);
-		push_median(a, &b, &inf_s);
+		push_median_b(a, &b, &inf_s);
 	}
-	sort_stack(a);
+	sort_stack_print(a, &inf_s);
 	while (ft_cdlstsize(b) > 0)
 	{
 		stack_info(b, &inf_s);
-		smart_push_median(a, &b, &inf_s);
+		smart_push_median_print(a, &b, &inf_s);
 	}
-	smart_rotate_a(a, min_stack(*a));
+	smart_rotate_a_print(a, min_stack(*a), &inf_s);
 }
 
 void	stack_info(t_dlist *stack, t_s *inf)

@@ -1,7 +1,6 @@
 #include "checker.h"
 
 static void		check_int(char *s, int *arr, int size);
-static t_dlist	*create_stack(int *input, int size);
 static void		sort_stack_from_input(t_dlist **a, int fd);
 static void		execute_input(t_dlist **a, t_dlist **b, char *line);
 
@@ -47,22 +46,6 @@ static void	check_int(char *s, int *arr, int size)
 		if (n == arr[i])
 			error();
 	}
-}
-
-static t_dlist	*create_stack(int *input, int size)
-{
-	int		i;
-	t_dlist	*stack;
-	t_dlist	*temp;
-
-	i = 0;
-	stack = ft_cdlstnew(&input[i]);
-	while (++i < size)
-	{
-		temp = ft_cdlstnew(&input[i]);
-		ft_cdlstadd_back(&stack, temp);
-	}
-	return (stack);
 }
 
 static void	sort_stack_from_input(t_dlist **a, int fd)
