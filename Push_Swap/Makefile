@@ -40,22 +40,20 @@ LIBFTMAKE=  make bonus --silent -C $(LIBFT_DIR)
 
 LIBFT=      -L$(LIBFT_DIR) -lft
 
-LIB=		$(NAME).a
-
 INC=		-I $(LIBFT_DIR)
 
 all: $(NAME)
 
 bonus: $(BONUS)
 
-$(NAME): $(OBJ_NAME) $(LIB) 
+$(NAME): $(OBJ_NAME) $(OBJS) 
 	@$(LIBFTMAKE)
-	@$(CC) $(CFLAGS) $(OBJ_NAME) $(INC) $(LIB) $(LIBFT) -o $@
+	@$(CC) $(CFLAGS) $^ $(INC) $(LIBFT) -o $@
 	@echo -e "$(GREEN)$@ Program created$(DEFAULT)"
 
-$(BONUS): $(OBJ_BONUS) $(LIB) 
+$(BONUS): $(OBJ_BONUS) $(OBJS) 
 	@$(LIBFTMAKE)
-	@$(CC) $(CFLAGS) $(OBJ_BONUS) $(INC) $(LIB) $(LIBFT) -o $@
+	@$(CC) $(CFLAGS) $^ $(INC) $(LIBFT) -o $@
 	@echo -e "$(GREEN)$@ Program created$(DEFAULT)"
 
 $(OBJ_NAME): $(SRC_NAME) 
@@ -67,9 +65,6 @@ $(OBJ_BONUS): $(SRC_BONUS)
 $(OBJS): $(SRCS) 
 	@$(CC) $(CFLAGS) $(INC) -c $^
 
-$(LIB): $(OBJS)
-	@ar rcs $@ $^
-
 clean:
 	@make $@ --silent -C $(LIBFT_DIR)
 	@rm -f $(OBJ_NAME) $(OBJS) $(OBJ_BONUS)
@@ -78,7 +73,7 @@ clean:
 fclean: clean
 	@make fclean --silent -C $(LIBFT_DIR)
 	@echo -e "$(RED)Libft removed$(DEFAULT)"
-	@rm -f $(NAME) $(BONUS) $(LIB)
+	@rm -f $(NAME) $(BONUS)
 	@echo -e "$(RED)Programs removed$(DEFAULT)"
 
 re: fclean all
