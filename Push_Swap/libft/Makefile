@@ -41,7 +41,11 @@ SRCS=	ft_atoi.c \
 		ft_sort_int_tab.c \
 		ft_min_int.c \
 		ft_max_int.c \
-		ft_get_next_line.c
+		ft_get_next_line.c \
+		ft_strequal.c \
+		ft_strarray_clear.c \
+		ft_strdel.c \
+		ft_memdel.c
 
 OBJS=$(SRCS:.c=.o)
 
@@ -72,11 +76,9 @@ all: $(NAME)
 
 bonus: $(OBJS) $(OBJ_BONUS) $(OBJ_CLISTS)
 	@ar rcs $(NAME) $^ 
-	@echo "Full Library Created"
 
 $(NAME): $(OBJS) 
 	@ar rcs $(NAME) $(OBJS)
-	@echo "Mandatory Library Created"
 
 $(OBJS): $(SRCS) 
 	@$(CC) $(CFLAGS) -c $^
@@ -89,10 +91,8 @@ $(OBJ_CLISTS): $(CLISTS)
 
 clean:
 	@rm -f $(OBJS) $(OBJ_BONUS) $(OBJ_CLISTS)
-	@echo "Object Files Removed"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "Library Removed"
 
 re: fclean all

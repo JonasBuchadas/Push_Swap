@@ -11,11 +11,9 @@ int	main(int argc, char **argv)
 	int		i;
 
 	if (argc == 1)
-		exit(1);
-	strlist = parser(argc - 1, argv);
+		return (0);
+	strlist = parser(argv);
 	size = size_strlist(strlist);
-	if (size < 2)
-		error();
 	input = (int *)malloc(sizeof(int) * size);
 	i = -1;
 	while (size > ++i)

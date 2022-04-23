@@ -2,7 +2,7 @@
 
 void	error(void)
 {
-	write(2, &"Error\n", 6);
+	ft_putendl_fd("Error", 2);
 	exit(1);
 }
 
@@ -13,13 +13,7 @@ void	del(void *num)
 
 void	mem_clear(char **strlist, t_dlist **stack, int *input)
 {
-	int	i;
-
-	i = -1;
-	while (strlist[++i] != NULL)
-		free(strlist[i]);
-	free(strlist[i]);
-	free(strlist);
+	ft_strarray_clear(&strlist);
 	ft_cdlstclear(stack, &del);
 	free(input);
 }

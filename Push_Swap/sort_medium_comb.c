@@ -24,7 +24,7 @@ void	sort_comb(t_dlist **a, t_check *t_c, char *comb)
 		else
 			push_median_b(a, &b, &inf_s);
 	}
-	sort_stack_print(a, &inf_s);
+	sort_stack_print(a, &b, &inf_s);
 	smart_push_a(a, &b, &inf_s);
 	smart_rotate_a_print(a, min_stack(*a), &inf_s);
 	allocate_moves(t_c, inf_s.moves, comb);
