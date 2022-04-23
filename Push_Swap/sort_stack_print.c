@@ -23,7 +23,7 @@ void	sort_stack_print(t_dlist **a, t_dlist **b, t_s *t_c)
 	else if (size == 4)
 		sort_size4(a, b, t_c);
 	else if (size == 5)
-		sort_size5(a, b,t_c);
+		sort_size5(a, b, t_c);
 }
 
 static void	sort_size5(t_dlist **a, t_dlist **b, t_s *t_c)
