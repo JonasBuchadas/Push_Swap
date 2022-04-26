@@ -10,21 +10,22 @@ int	main(int argc, char **argv)
 	t_dlist	*stack;
 	int		i;
 
-	if (argc == 1)
-		return (0);
-	strlist = parser(argv);
-	size = size_strlist(strlist);
-	input = (int *)malloc(sizeof(int) * size);
-	i = -1;
-	while (size > ++i)
+	if (argc > 1)
 	{
-		check_int(strlist[i], input, i);
-		input[i] = ft_atoi((const char *)strlist[i]);
+		strlist = parser(argv);
+		size = size_strlist(strlist);
+		input = (int *)malloc(sizeof(int) * size);
+		i = -1;
+		while (size > ++i)
+		{
+			check_int(strlist[i], input, i);
+			input[i] = ft_atoi((const char *)strlist[i]);
+		}
+		stack = create_stack(input, size);
+		if (!is_sorted(stack))
+			sort_stack(&stack, input);
+		mem_clear(strlist, &stack, input);
 	}
-	stack = create_stack(input, size);
-	if (!is_sorted(stack))
-		sort_stack(&stack, input);
-	mem_clear(strlist, &stack, input);
 	return (0);
 }
 

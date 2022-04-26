@@ -61,6 +61,7 @@ DEFAULT= \033[0m
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
+### ACTIVE RULES ###
 all: $(NAME)
 
 bonus: $(BONUS)
@@ -90,5 +91,10 @@ fclean: clean
 	@echo -e "$(RED)Programs removed$(DEFAULT)"
 
 re: fclean all
+
+### NORMINETTE ###
+norm:
+	@norminette -R CheckForbiddenSourceHeader $(SRCS_PATH)
+	@norminette -R CheckDefine $(INCL_PATH)
 
 .PHONY:	all clean fclean bonus re

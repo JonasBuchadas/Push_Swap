@@ -12,21 +12,22 @@ int	main(int argc, char **argv)
 	t_dlist	*stack;
 	int		i;
 
-	if (argc == 1)
-		return (0);
-	strlist = parser(argv);
-	size = size_strlist(strlist);
-	input = (int *)malloc(sizeof(int) * size);
-	i = -1;
-	while (size > ++i)
+	if (argc > 1)
 	{
-		check_int(strlist[i], input, i);
-		input[i] = ft_atoi((const char *)strlist[i]);
+		strlist = parser(argv);
+		size = size_strlist(strlist);
+		input = (int *)malloc(sizeof(int) * size);
+		i = -1;
+		while (size > ++i)
+		{
+			check_int(strlist[i], input, i);
+			input[i] = ft_atoi((const char *)strlist[i]);
+		}
+		stack = create_stack(input, size);
+		if (!is_sorted(stack))
+			sort_stack_from_input(&stack, STDIN_FILENO);
+		mem_clear(strlist, &stack, input);
 	}
-	stack = create_stack(input, size);
-	if (!is_sorted(stack))
-		sort_stack_from_input(&stack, STDIN_FILENO);
-	mem_clear(strlist, &stack, input);
 	return (0);
 }
 
@@ -62,41 +63,45 @@ static void	sort_stack_from_input(t_dlist **a, int fd)
 
 	size = ft_cdlstsize(*a);
 	b = NULL;
-	line = get_next_line(fd);
-	while (line)
+	while (1)
 	{
-		execute_input(a, &b, line);
-		free(line);
 		line = get_next_line(fd);
+		if (!line || *line == '\n')
+			break ;
+		execute_input(a, &b, line);
+		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	if (is_sorted(*a) && ft_cdlstsize(*a) == size)
-		write(1, &"OK\n", 3);
+		ft_putendl_fd("OK", 1);
 	else
-		write(1, &"KO\n", 3);
+		ft_putendl_fd("KO", 1);
 }
 
 static void	execute_input(t_dlist **a, t_dlist **b, char *line)
 {
-	if (line[0] == 's' && line[1] == 's')
+	if (ft_strequal("ss\n", line))
 		ss(a, b, false);
-	else if (line[0] == 's' && line[1] == 'a')
+	else if (ft_strequal("sa\n", line))
 		sa(a, false);
-	else if (line[0] == 's' && line[1] == 'b')
+	else if (ft_strequal("sb\n", line))
 		sb(b, false);
-	else if (line[0] == 'r' && line[1] == 'a')
+	else if (ft_strequal("ra\n", line))
 		ra(a, false);
-	else if (line[0] == 'r' && line[1] == 'b')
+	else if (ft_strequal("rb\n", line))
 		rb(b, false);
-	else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'a')
+	else if (ft_strequal("rra\n", line))
 		rra(a, false);
-	else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'b')
+	else if (ft_strequal("rrb\n", line))
 		rrb(b, false);
-	else if (line[0] == 'r' && line[1] == 'r' && line[2] == 'r')
+	else if (ft_strequal("rrr\n", line))
 		rrr(a, b, false);
-	else if (line[0] == 'r' && line[1] == 'r')
+	else if (ft_strequal("rr\n", line))
 		rr(a, b, false);
-	else if (line[0] == 'p' && line[1] == 'a')
+	else if (ft_strequal("pa\n", line))
 		pa(a, b, false);
-	else if (line[0] == 'p' && line[1] == 'b')
+	else if (ft_strequal("pb\n", line))
 		pb(a, b, false);
+	else
+		ft_putendl_fd("Action not found", 1);
 }
