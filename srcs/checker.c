@@ -62,12 +62,12 @@ static void	sort_stack_from_input(t_dlist **a, int fd)
 
 	size = ft_cdlstsize(*a);
 	b = NULL;
-	line = ft_get_next_line(fd);
+	line = get_next_line(fd);
 	while (line)
 	{
 		execute_input(a, &b, line);
 		free(line);
-		line = ft_get_next_line(fd);
+		line = get_next_line(fd);
 	}
 	if (is_sorted(*a) && ft_cdlstsize(*a) == size)
 		write(1, &"OK\n", 3);

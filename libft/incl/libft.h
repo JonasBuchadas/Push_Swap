@@ -89,7 +89,7 @@ void	ft_cdlstdelone(t_dlist *lst, void (*del)(void *));
 void	ft_cdlstclear(t_dlist **lst, void (*del)(void *));
 void	ft_cdlstiter(t_dlist *lst, void (*f)(void *));
 // ADDITIONAL PROTOTYPES
-char	*ft_get_next_line(int fd);
+char	*get_next_line(int fd);
 void	ft_sort_int_tab(int *tab, int size);
 int		ft_min_int(int n, ...);
 int		ft_max_int(int n, ...);

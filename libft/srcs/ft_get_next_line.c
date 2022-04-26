@@ -5,7 +5,7 @@ static char	*remove_line(char *str);
 static char	*get_next_buffer(int fd);
 static char	*join_until_nl(int fd, char *str);
 
-char	*ft_get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	static char	*str;
 	char		*temp;
