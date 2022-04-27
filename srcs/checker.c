@@ -24,8 +24,7 @@ int	main(int argc, char **argv)
 			input[i] = ft_atoi((const char *)strlist[i]);
 		}
 		stack = create_stack(input, size);
-		if (!is_sorted(stack))
-			sort_stack_from_input(&stack, STDIN_FILENO);
+		sort_stack_from_input(&stack, STDIN_FILENO);
 		mem_clear(strlist, &stack, input);
 	}
 	return (0);
@@ -66,12 +65,13 @@ static void	sort_stack_from_input(t_dlist **a, int fd)
 	while (1)
 	{
 		line = get_next_line(fd);
-		if (!line || *line == '\n')
+		if (!line)
 			break ;
 		execute_input(a, &b, line);
 		ft_strdel(&line);
 	}
 	ft_strdel(&line);
+	ft_cdlstclear(&b, &del);
 	if (is_sorted(*a) && ft_cdlstsize(*a) == size)
 		ft_putendl_fd("OK", 1);
 	else
@@ -103,5 +103,5 @@ static void	execute_input(t_dlist **a, t_dlist **b, char *line)
 	else if (ft_strequal("pb\n", line))
 		pb(a, b, false);
 	else
-		ft_putendl_fd("Action not found", 1);
+		error();
 }

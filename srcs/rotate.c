@@ -4,8 +4,11 @@ static void	rotate(t_dlist **stack)
 {
 	t_dlist	*temp;
 
-	temp = *stack;
-	*stack = temp->next;
+	if (*stack && ft_cdlstsize(*stack) > 1)
+	{
+		temp = *stack;
+		*stack = temp->next;
+	}
 }
 
 void	ra(t_dlist **stack, bool print)

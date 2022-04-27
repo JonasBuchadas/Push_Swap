@@ -6,18 +6,21 @@ static void	push(t_dlist **a, t_dlist **b)
 	t_dlist	*temp;
 	int		size;
 
-	size = ft_cdlstsize(*a);
-	first = *a;
-	temp = first->prev;
-	temp->next = first->next;
-	temp = first->next;
-	temp->prev = first->prev;
-	*a = first->next;
-	first->next = NULL;
-	first->prev = NULL;
-	ft_cdlstadd_front(b, first);
-	if (size == 1)
-		*a = NULL;
+	if (ft_cdlstsize(*a) > 0)
+	{
+		size = ft_cdlstsize(*a);
+		first = *a;
+		temp = first->prev;
+		temp->next = first->next;
+		temp = first->next;
+		temp->prev = first->prev;
+		*a = first->next;
+		first->next = NULL;
+		first->prev = NULL;
+		ft_cdlstadd_front(b, first);
+		if (size == 1)
+			*a = NULL;
+	}
 }
 
 void	pa(t_dlist **a, t_dlist **b, bool print)

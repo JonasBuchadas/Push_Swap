@@ -97,4 +97,5 @@ norm:
 	@norminette -R CheckForbiddenSourceHeader $(SRCS_PATH)
 	@norminette -R CheckDefine $(INCL_PATH)
 
-.PHONY:	all clean fclean bonus re
+### PHONY RULE ###
+.PHONY:	all bonus clean fclean re norm

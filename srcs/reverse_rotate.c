@@ -4,8 +4,11 @@ static void	reverse_rotate(t_dlist **stack)
 {
 	t_dlist	*temp;
 
-	temp = *stack;
-	*stack = temp->prev;
+	if (*stack && ft_cdlstsize(*stack) > 1)
+	{
+		temp = *stack;
+		*stack = temp->prev;
+	}
 }
 
 void	rra(t_dlist **stack, bool print)
